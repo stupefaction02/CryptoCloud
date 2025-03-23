@@ -4,10 +4,96 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views"
+             xmlns:controls="clr-namespace:CryptoCloud.UserControls"
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MyDisksViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <StackPanel Orientation="Vertical">
+        <Grid Height="50" Margin="0,0,0,46">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       VerticalAlignment="Center"
+                       FontWeight="DemiBold" 
+                       Foreground="#FFFFFF"
+                       LineHeight="30"
+                       FontSize="{StaticResource FontSizeLarge}">Подключенные облака</TextBlock>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button Content="Все облака" 
+                        Width="150" 
+                        Height="50" 
+                        Margin="0,0,10,0"
+                        FontWeight="Medium"
+                        Style="{StaticResource DropDownButton}" />
+                <Button Content="По названию" 
+                        Width="150" 
+                        Height="50" 
+                        Margin="0,0,10,0"
+                        FontWeight="Medium"
+                        Style="{StaticResource DropDownButton}" />
+                <Button Width="76" 
+                        Height="50" 
+                        Style="{StaticResource DropDownzzWithIconButton}" />
+            </StackPanel>
+        </Grid>
+
+        <!--<controls:DiskItem Margin="0,0,10,10" Width="250" Height="350" DataContext="{Binding DiskModel}" />-->
+        <!--<controls:DiskItem Margin="0,0,10,10" Width="250" Height="350" DataContext="{Binding DiskModel}" />-->
+        <ItemsControl x:Name="disks" Height="1000" ItemsSource="{Binding Disks}">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             
-    </Grid>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Padding="0" Margin="0,0,15,15" Width="250" Height="350">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AssetsMainEntity.TransparentButton}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <controls:DiskItem Width="250" Height="350" DataContext="{Binding DiskModel}" />
+                                            <!--<UserControl>
+                                                <UserControl.Style>
+                                                    <Style TargetType="{x:Type UserControl}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Type}" Value="item">
+                                                                <Setter Property="Content">
+                                                                    <Setter.Value>
+                                                                        <controls:DiskItem Margin="0,0,10,10" Width="350" Height="250" DataContext="{Binding DiskModel}" />
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding Type}" Value="addButton">
+                                                                <Setter Property="Content">
+                                                                    <Setter.Value>
+                                                                        <Border Width="350" Height="250" Background="Red">
+                                                                            
+                                                                        </Border>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </UserControl.Style>
+                                            </UserControl>-->
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
 </UserControl>

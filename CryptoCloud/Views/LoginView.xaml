@@ -38,8 +38,8 @@
                 </Grid>
             </Border>
 
-            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}" attachedProperties:AttachedProperties.Placeholder="Твоя почта" />
-            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}" attachedProperties:AttachedProperties.Placeholder="Пароль" />
+            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}"  />
+            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}"  />
 
             <TextBlock x:Name="forgetPasswordTb" 
                        Style="{StaticResource TextBlockLink}"

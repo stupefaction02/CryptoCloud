@@ -12,6 +12,7 @@ namespace CryptoCloud.Infrastructure
         public LoginViewModel LoginViewModel => DependencyContainer.Resolve<LoginViewModel>();
         public SideMenuViewModel SideMenuViewModel => DependencyContainer.Resolve<SideMenuViewModel>();
         public MyDisksViewModel MyDiskViewModel => DependencyContainer.Resolve<MyDisksViewModel>();
+        public MainViewModel MainViewModel => DependencyContainer.Resolve<MainViewModel>();
 
         //public OverviewViewModel OverviewViewModel => DependencyContainer.Resolve<OverviewViewModel>();
 

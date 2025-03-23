@@ -26,8 +26,9 @@
                 <Button Width="414" 
                         Height="50"
                         Margin="0,0,10,0"
+                        FontWeight="Bold"
                         Style="{StaticResource DropDownButton}"
-                        Content="Подключеные диски" Background="#222329" />
+                        Content="Подключеные диски"/>
                 <Button Width="156" 
                         Height="50"
                         Margin="0,0,10,0"

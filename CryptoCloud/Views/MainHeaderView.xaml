@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Button Width="197" Content="Диск - Степан01">
+                <Button Width="197" FontWeight="Bold" Content="Диск - Степан01">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DropDownButton}">
                             <Setter Property="Background">

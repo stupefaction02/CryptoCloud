@@ -178,6 +178,7 @@
     <Style x:Key="DropDownButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="50"/>
         <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#222329"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -191,7 +192,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock x:Name="contentPresenter" 
                                         Focusable="False"
-                                        FontWeight="Bold"
+                                        FontWeight="{TemplateBinding FontWeight}"
                                         LineHeight="20px"
                                         FontFamily="Inter"
                                          Foreground="White"
@@ -205,6 +206,39 @@
                                       Height="16"
                                       Margin="0,0,10,0"
                                       Source="pack://application:,,,/Images/DropDownButtonIcon.png"/>
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DropDownzzWithIconButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#222329"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                      Height="{TemplateBinding Height}"
+                      Background="{TemplateBinding Background}" 
+                      CornerRadius="25"
+                      SnapsToDevicePixels="true">
+                        <Border >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image 
+                                  Width="14"
+                                  Height="14"
+                                  Margin="0,0,10,0"
+                                  Source="pack://application:,,,/Images/DropDownGroup.png"/>
+                                <Image 
+                                  Width="16"
+                                  Height="16"
+                                  Margin="0,0,0,0"
+                                  Source="pack://application:,,,/Images/DropDownButtonIcon.png"/>
                             </StackPanel>
                         </Border>
                     </Border>
@@ -332,6 +366,30 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="AssetsMainEntity.TransparentButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border 
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    Padding="{TemplateBinding Padding}" 
+                    Background="{TemplateBinding Background}">
+                        <ContentPresenter TextBlock.Foreground="#16181A"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <ResourceDictionary.MergedDictionaries>

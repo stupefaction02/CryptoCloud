@@ -12,7 +12,7 @@ namespace CryptoCloud.ViewModels
 
         public MainViewModel()
         {
-            
+            ViewNavigationModel = new ViewNavigationModel { DataContext = new MyDisksViewModel(), ViewKey = "MyDisks" };
         }
     }
 }

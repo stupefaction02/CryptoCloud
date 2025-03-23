@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:CryptoCloud.Views"
              xmlns:local="clr-namespace:CryptoCloud.Views"
+             DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="mainViewGrid">
@@ -24,7 +25,7 @@
 
             <local:SideMenuView x:Name="sideMenu" Grid.Column="0" />
 
-            <Border Padding="28,0,0,0" HorizontalAlignment="Left">
+            <Border Padding="28,0,0,0" Grid.Column="1" HorizontalAlignment="Left">
                 <UserControl x:Name="mainViewContentSwitch" DataContext="{Binding ViewNavigationModel}">
                     <UserControl.Style>
                         <Style TargetType="{x:Type UserControl}">

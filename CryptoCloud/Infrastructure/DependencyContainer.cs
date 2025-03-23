@@ -22,6 +22,7 @@ namespace CryptoCloud.Infrastructure
             services.AddSingleton<LinkDiskHeaderViewModel>();
             services.AddSingleton<SideMenuViewModel>();
             services.AddSingleton<MyDisksViewModel>();
+            services.AddSingleton<MainViewModel>();
 
             serviceProvider = services.BuildServiceProvider();
         }
