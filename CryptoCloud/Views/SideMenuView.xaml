@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="CryptoCloud.Views.SideMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CryptoCloud.Views" 
+             xmlns:viewmodels="clr-namespace:CryptoCloud.ViewModels"
+             DataContext="{Binding Source={StaticResource viewModelLocator}, Path=SideMenuViewModel}"
+             d:DataContext="{d:DesignInstance Type=viewmodels:SideMenuViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="200">
+    <Border Background="#1B1C21"
+            Padding="0,15,0,0"
+            CornerRadius="35"
+            BorderThickness="1"
+            BorderBrush="#222329">
+        <StackPanel>
+            <Border HorizontalAlignment="Left" Margin="0,0,0,28" Padding="15,0,0,0">
+                <Button 
+                    Content="Создать"
+                    Width="154" 
+                    Height="50" 
+                    Background="#2886F1"
+                    Style="{StaticResource PlusIconButton}" />
+            </Border>
+
+            <ItemsControl x:Name="sideMenuItems"
+                          Width="Auto"
+                          ItemsSource="{Binding MenuItems}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <Border Width="Auto" Height="60" Padding="28,0,0,0">
+                                                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+                                                        <Image 
+                                                            Margin="0,0,10,0"
+                                                            Width="20"
+                                                            Height="20"
+                                                            Source="{Binding ImageSource}"/>
+                                                        <TextBlock Text="{Binding Text}"
+                                                                   Foreground="#707383"
+                                                                   FontSize="{StaticResource FontSizeRegular}"
+                                                                   FontWeight="SemiBold"
+                                                                   LineHeight="20">
+                                                            
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+</UserControl>

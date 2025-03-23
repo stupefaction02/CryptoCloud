@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CryptoCloud.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:CryptoCloud.Views"
+             xmlns:local="clr-namespace:CryptoCloud.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="mainViewGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition MaxHeight="15" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <local:MainHeaderView x:Name="mainViewHeader" Grid.Row="0" />
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:SideMenuView x:Name="sideMenu" Grid.Column="0" />
+
+            <Border Padding="28,0,0,0" HorizontalAlignment="Left">
+                <UserControl x:Name="mainViewContentSwitch" DataContext="{Binding ViewNavigationModel}">
+                    <UserControl.Style>
+                        <Style TargetType="{x:Type UserControl}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ViewKey}" Value="MyDisks">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <views:MyDisksView DataContext="{Binding DataContext}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+
+                                <!-- Other views, depends on what sidebar item we've clicked -->
+                            </Style.Triggers>
+                        </Style>
+                    </UserControl.Style>
+                </UserControl>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -6,14 +6,14 @@
         xmlns:views="clr-namespace:CryptoCloud.Views"
         xmlns:local="clr-namespace:CryptoCloud"
         mc:Ignorable="d"
-        Padding="0"
         Background="#16171D"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
-        Title="CryptoCloud" Height="650" Width="780">
+        Title="CryptoCloud" Height="650" Width="1440">
     <Grid>
         <!--<Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>-->
 
-        <UserControl x:Name="viewSwitch" DataContext="{Binding ViewNavigationModel}" Padding="0">
+        <UserControl x:Name="viewSwitch" DataContext="{Binding ViewNavigationModel}" 
+                    Padding="16,16,16,0">
             <UserControl.Style>
                 <Style TargetType="{x:Type UserControl}">
                     <Style.Triggers>
@@ -29,6 +29,14 @@
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <views:LoginView DataContext="{Binding DataContext}" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ViewKey}" Value="Main">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:MainView DataContext="{Binding DataContext}" />
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
