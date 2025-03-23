@@ -44,11 +44,11 @@ namespace CryptoCloud.ViewModels
 
             Disks = new ObservableCollection<DiskItemModel>
             {
+                new DiskItemModel { Type = "addButton" },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "Ivan", Size = "15 ГБ", Type = "Disk" } },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "@Stepan", Size = "215 ГБ", Type = "Disk" } },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "vasily.zadov1957@mail.ru", Size = "15 МБ", Type = "Disk" } },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "Anon", Size = "1512 ТБ", Type = "Disk" } },
-                new DiskItemModel { Type = "addButton" },
             };
         }
     }
