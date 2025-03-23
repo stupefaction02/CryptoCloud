@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="CryptoCloud.Views.LinkDiskHeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CryptoCloud.Views" 
+             xmlns:viewmodels="clr-namespace:CryptoCloud.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:LinkDiskHeaderViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border 
+        Height="80"
+        Background="#1B1C21"
+        BorderBrush="#222329"
+        CornerRadius="35"
+        BorderThickness="1"
+        Padding="14">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Width="414" 
+                        Height="50"
+                        Margin="0,0,10,0"
+                        Style="{StaticResource DropDownButton}"
+                        Content="Подключеные диски" Background="#222329" />
+                <Button Width="156" 
+                        Height="50"
+                        Margin="0,0,10,0"
+                        Content="BP Премиум" >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource 25RoundedButton}">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                        <GradientStop Color="#FB4C2F" Offset="0" />
+                                        <GradientStop Color="#FF9F63" Offset="1" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <!--<TextBox />-->
+                <Image 
+                    Width="30"
+                    Height="30"
+                    Margin="0,0,20,0"
+                    Source="pack://application:,,,/Images/NotificationIcon.png"/>
+                <Image />
+
+                <Image 
+                    Width="25"
+                    Height="25"
+                    Margin="0,0,20,0"
+                    Source="pack://application:,,,/Images/Settings.png"/>
+
+                <Border 
+                    Width="50"
+                    Height="50"
+                    CornerRadius="20"
+                    Background="#9747FF">
+                    <Image 
+                        Width="18.025976181030273" 
+                        Height="23.5128173828125"
+                        Source="pack://application:,,,/Images/AvatarPlaceholder.png"/>
+                </Border>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

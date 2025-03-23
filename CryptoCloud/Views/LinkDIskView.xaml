@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="CryptoCloud.Views.LinkDIskView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CryptoCloud.Views"
+             mc:Ignorable="d" 
+             Width="1440" 
+             Height="900"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid x:Name="linkDiskViewGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Padding="16,16,16,0">
+            <local:LinkDiskHeaderView x:Name="linkDiskViewHeader" Grid.Row="0" />
+        </Border>
+        
+        <StackPanel x:Name="linkDiskContent"
+                    Grid.Row="1"
+                    Width="345" 
+                    Height="138">
+            <TextBlock 
+                FontSize="16"
+                FontWeight="DemiBold"
+                Margin="0,0,0,18" 
+                LineHeight="24"
+                Width="325" 
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Foreground="#707383" 
+                Height="48">
+                Вы еще не подключили ни одного диска. 
+                Подключите диск, чтобы продолжить.
+            </TextBlock>
+
+            <Button Style="{StaticResource LinkDiskButton}"
+                    Content="Подлкючить диск"
+                    Background="#2886F1" 
+                    Width="222" 
+                    Height="50" />
+        </StackPanel>
+    </Grid>
+
+    
+</UserControl>

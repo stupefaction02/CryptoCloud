@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="CryptoCloud.Views.LoginView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:converters="clr-namespace:CryptoCloud.Converters"
+      xmlns:attachedProperties="clr-namespace:CryptoCloud.AttachedProperties"
+      xmlns:local="clr-namespace:CryptoCloud.Views"
+      Background="Transparent"
+      DataContext="{Binding Source={StaticResource viewModelLocator}, Path=LoginViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="780">
+    <Grid Background="#222329">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock HorizontalAlignment="Left" 
+                       Width="243" 
+                       Margin="0,0,0,20" 
+                       Style="{StaticResource TextBlocks.H1}">
+                Выполните вход
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="0,0,0,20" Width="226" Foreground="#707383" Height="20">Добро пожаловать в КриптКлауд</TextBlock>
+
+            <Border x:Name="loginButtons" Margin="0,0,0,5" Padding="5" Width="290" Background="#16171D" CornerRadius="30" Height="50">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Вход" Grid.Column="0" Style="{StaticResource 25RoundedButton}"/>
+                    <Button Content="Регистрация" Grid.Column="2" Style="{StaticResource 25RoundedButton}"/>
+                </Grid>
+            </Border>
+
+            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}" attachedProperties:AttachedProperties.Placeholder="Твоя почта" />
+            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}" attachedProperties:AttachedProperties.Placeholder="Пароль" />
+
+            <TextBlock x:Name="forgetPasswordTb" 
+                       Style="{StaticResource TextBlockLink}"
+                       HorizontalAlignment="Left" 
+                       Margin="0,0,0,20" 
+                       Width="100" 
+                       Height="18">
+                Забыли пароль?
+            </TextBlock>
+
+            <Button x:Name="loginBtn"
+                    Content="Войти" 
+                    Height="50" 
+                    Margin="0,0,0,10"
+                    Command="{Binding LoginButtonCommand}"
+                    Style="{StaticResource BlueGradientButton}"/>
+            <Button Content="Войти с помощью Google" 
+                    Margin="0,0,0,10"
+                    Height="50" 
+                    Style="{StaticResource LoginWithGoogleButton}"/>
+
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <Image 
+                    Width="20"
+                    Height="20"
+                    Margin="0,0,10,0"
+                    Source="pack://application:,,,/Images/key-fill.png"/>
+
+                <TextBlock 
+                      Focusable="False"
+                      FontWeight="Medium"
+                      Foreground="White"
+                      LineHeight="18"
+                      FontSize="{StaticResource FontSizeSmall}">
+                    <Run>Войти с помощью</Run>
+                    <Run Style="{StaticResource RunLink}">ключа шифрования</Run>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <Canvas x:Name="loginRightSide" Grid.Column="1" Width="Auto" Height="Auto">
+            <Canvas.Background>
+                <ImageBrush Stretch="Fill" 
+                            ImageSource="pack://application:,,,/Images/loginBG.png">
+                    
+                </ImageBrush>
+            </Canvas.Background>
+            
+            <!-- JetBrains Mono -->
+            <TextBlock 
+                Canvas.Left="25"
+                Canvas.Bottom="10"
+                   HorizontalAlignment="Left" 
+                   Width="297" 
+                   Margin="0,0,0,20"
+                FontWeight="Normal"
+                Foreground="White"
+                TextWrapping="Wrap"
+                FontSize="{StaticResource FontSizeXXLarge}">
+                Пользуйтесь облачными данными безопасно
+            </TextBlock>
+
+            <Image 
+                Canvas.Top="25"
+                Canvas.Right="23"
+                Width="50"
+                Height="53.03"
+                Source="pack://application:,,,/Images/Login_Page_TopRight_Icon.png"
+            />
+        </Canvas>
+    </Grid>
+</UserControl>
