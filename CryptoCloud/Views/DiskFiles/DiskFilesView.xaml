@@ -8,6 +8,66 @@
              mc:Ignorable="d" 
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=DiskFilesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DiskFilesItemTemplate">
+            <UserControl Width="160" Height="179">
+                <UserControl.Style>
+                    <Style TargetType="{x:Type UserControl}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type}" Value="folder">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <controls:DiskFolderItemView DataContext="{Binding Model}" Width="160" Height="179" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Type}" Value="file">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <controls:DiskFileItemView DataContext="{Binding Model}" Width="160" Height="179" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Type}" Value="addFile">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <Border Width="250" 
+                        Height="350"
+                        CornerRadius="30"
+                        Background="#222329">
+                                            <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                                                <Image 
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                                Width="100"
+                                Height="100"
+                                Margin="0,0,0,20"
+                                Source="pack://application:,,,/Images/BigPlus.png"/>
+                                                <TextBlock Text="Добавить диск" 
+                                   Foreground="#707383"
+                                   FontWeight="Bold" 
+                                   LineHeight="30"
+                                   FontSize="{StaticResource FontSizeLarge}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </UserControl.Style>
+            </UserControl>
+        </DataTemplate>
+
+        <CollectionViewSource
+            x:Key="PeopleViewSource"
+            IsSourceGrouped="True"
+            Source="{x:Bind ViewModel.Contacts, Mode=OneWay}" />
+    </UserControl.Resources>
+    
     <StackPanel Width="Auto" Orientation="Vertical">
         <Grid Height="50" Margin="0,0,0,46">
             <Grid.ColumnDefinitions>
@@ -41,80 +101,30 @@
         <!--<controls:DiskFolderItemView Width="160" Height="179" />-->
         <!--<controls:DiskFileItemView Width="160" Height="179" />-->
 
-        <ItemsControl x:Name="disks" Height="1000" ItemsSource="{Binding Files}">
+        <ListView x:Name="diskFiles" 
+                      Height="1000" 
+                  Background="Transparent"
+                      ItemTemplate="{DynamicResource DiskFilesItemTemplate}">
+            
+            <ListView.GroupStyle>
+                <GroupStyle HidesIfEmpty="True">
+
+                    <!--  Header template (you can see IReadOnlyObservableGroup being used here)  -->
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                FontSize="24"
+                                Text="{Binding Name}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Padding="0" Width="160" Height="179">
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AssetsMainEntity.TransparentButton}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            <UserControl>
-                                                <UserControl.Style>
-                                                    <Style TargetType="{x:Type UserControl}">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Type}" Value="folder">
-                                                                <Setter Property="Content">
-                                                                    <Setter.Value>
-                                                                        <controls:DiskFolderItemView DataContext="{Binding Model}" Width="160" Height="179" />
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
-
-                                                            <DataTrigger Binding="{Binding Type}" Value="file">
-                                                                <Setter Property="Content">
-                                                                    <Setter.Value>
-                                                                        <controls:DiskFileItemView DataContext="{Binding Model}" Width="160" Height="179" />
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
-
-                                                            <DataTrigger Binding="{Binding Type}" Value="addFile">
-                                                                <Setter Property="Content">
-                                                                    <Setter.Value>
-                                                                        <Border Width="250" 
-                                                                                Height="350"
-                                                                                CornerRadius="30"
-                                                                                Background="#222329">
-                                                                            <StackPanel VerticalAlignment="Center"
-                                                                                        HorizontalAlignment="Center">
-                                                                                <Image 
-                                                                                       VerticalAlignment="Center"
-                                                                                       HorizontalAlignment="Center"
-                                                                                        Width="100"
-                                                                                        Height="100"
-                                                                                        Margin="0,0,0,20"
-                                                                                        Source="pack://application:,,,/Images/BigPlus.png"/>
-                                                                                <TextBlock Text="Добавить диск" 
-                                                                                           Foreground="#707383"
-                                                                                           FontWeight="Bold" 
-                                                                                           LineHeight="30"
-                                                                                           FontSize="{StaticResource FontSizeLarge}" />
-                                                                            </StackPanel>
-                                                                        </Border>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </UserControl.Style>
-                                            </UserControl>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        </ListView>
     </StackPanel>
 </UserControl>
