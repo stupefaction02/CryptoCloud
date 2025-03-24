@@ -1,15 +1,21 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
     public class SideMenuItemModel
     {
+        public string Uid { get; set; } = Guid.NewGuid().ToString();
+
         public string ImageSource { get; set; }
+
         public string Text { get; set; }
 
         public bool IsSelected { get; set; }
@@ -19,7 +25,11 @@ namespace CryptoCloud.ViewModels
     {
         public ObservableCollection<SideMenuItemModel> MenuItems { get; set; }
 
-        public SideMenuViewModel()
+        public ICommand ItemClickedCommand { get; set; }
+
+        public ILogger Logger { get; }
+
+        public SideMenuViewModel(ILoggerFactory loggerFactory)
         {
             MenuItems = new ObservableCollection<SideMenuItemModel>
             {
@@ -30,6 +40,29 @@ namespace CryptoCloud.ViewModels
                 new SideMenuItemModel { Text = "Настройки", ImageSource = "pack://application:,,,/Images/Gear.png" },
                 new SideMenuItemModel { Text = "Корзина", ImageSource = "pack://application:,,,/Images/Trash.png" },
             };
+
+            ItemClickedCommand = new RelayCommand<object>(ItemClickedCommandHandler);
+
+            Logger = loggerFactory.CreateLogger<SideMenuViewModel>();
+        }
+
+        private void ItemClickedCommandHandler(object? obj)
+        {
+            if (obj is string uid)
+            {
+                Logger.LogInformation($"Clicked item: uid={uid}");
+
+                var currentSelected = MenuItems.SingleOrDefault(x => x.IsSelected);
+
+                if (currentSelected != null)
+                {
+                    currentSelected.IsSelected = false;
+                }
+
+                var clicked = MenuItems.SingleOrDefault(x => x.Uid == uid);
+
+                clicked.IsSelected = true;
+            }
         }
     }
 }

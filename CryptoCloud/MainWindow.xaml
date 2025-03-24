@@ -4,45 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:CryptoCloud.Views"
+        xmlns:diskFilesViews="clr-namespace:CryptoCloud.Views.DiskFiles"
         xmlns:local="clr-namespace:CryptoCloud"
         mc:Ignorable="d"
+        x:Name="window"
         Background="#16171D"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
-        Title="CryptoCloud" Height="650" Width="1440">
+        Title="CryptoCloud" Height="650" Width="1640">
     <Grid>
-        <!--<Frame Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>-->
+        <Canvas>
+            <UserControl x:Name="viewSwitch" DataContext="{Binding ViewNavigationModel}" 
+                        Padding="16,16,16,0">
+                <UserControl.Style>
+                    <Style TargetType="{x:Type UserControl}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ViewKey}" Value="LinkDisk">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <views:LinkDIskView DataContext="{Binding DataContext}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
 
-        <UserControl x:Name="viewSwitch" DataContext="{Binding ViewNavigationModel}" 
-                    Padding="16,16,16,0">
-            <UserControl.Style>
-                <Style TargetType="{x:Type UserControl}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ViewKey}" Value="LinkDisk">
-                            <Setter Property="Content">
-                                <Setter.Value>
-                                    <views:LinkDIskView DataContext="{Binding DataContext}" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
+                            <DataTrigger Binding="{Binding ViewKey}" Value="Login">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <views:LoginView DataContext="{Binding DataContext}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
 
-                        <DataTrigger Binding="{Binding ViewKey}" Value="Login">
-                            <Setter Property="Content">
-                                <Setter.Value>
-                                    <views:LoginView DataContext="{Binding DataContext}" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
+                            <DataTrigger Binding="{Binding ViewKey}" Value="Main">
+                                <Setter Property="Content">
+                                    <Setter.Value>
+                                        <views:MainView DataContext="{Binding DataContext}" />
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </UserControl.Style>
+            </UserControl>
 
-                        <DataTrigger Binding="{Binding ViewKey}" Value="Main">
-                            <Setter Property="Content">
-                                <Setter.Value>
-                                    <views:MainView DataContext="{Binding DataContext}" />
-                                </Setter.Value>
-                            </Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </UserControl.Style>
-        </UserControl>
+            <diskFilesViews:FilePopup x:Name="fileInfoPopup" 
+                          Height="80" 
+                          Width="{Binding ElementName=window, Path=ActualWidth}"
+                          Canvas.Top="0" 
+                          Canvas.Left="0" />
+        </Canvas>
     </Grid>
 </Window>

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Documents;
 using CryptoCloud.Services;
 using CryptoCloud.Views;
+using CommunityToolkit.Mvvm.Input;
 
 namespace CryptoCloud.ViewModels
 {
@@ -141,8 +142,8 @@ namespace CryptoCloud.ViewModels
 
             this.mainWindow.StateChanged += MainWindowStateChanged;
 
-            Minimize = new RelayVoidCommand(() => mainWindow.WindowState ^= WindowState.Minimized);
-            Close = new RelayVoidCommand(() => mainWindow.Close());
+            Minimize = new RelayCommand(() => mainWindow.WindowState ^= WindowState.Minimized);
+            Close = new RelayCommand(() => mainWindow.Close());
 
             infoManager.NewInfoMessage += info =>
             {

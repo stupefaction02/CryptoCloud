@@ -26,8 +26,6 @@ namespace CryptoCloud.ViewModels
         public DiskModel DiskModel { get; set; }
     }
 
-    
-
     public class MyDisksViewModel : BaseViewModel
     {
         public ICommand AddDiskCommand { get; set; }
@@ -40,7 +38,7 @@ namespace CryptoCloud.ViewModels
 
         public MyDisksViewModel()
         {
-            AddDiskCommand = new RelayCommand(AddDiskCommnadHandler);
+            AddDiskCommand = new RelayCommand<object>(AddDiskCommnadHandler);
 
             Disks = new ObservableCollection<DiskItemModel>
             {

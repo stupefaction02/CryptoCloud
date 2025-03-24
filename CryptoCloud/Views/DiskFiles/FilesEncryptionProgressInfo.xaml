@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="CryptoCloud.Views.DiskFiles.FilesEncryptionProgressInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CryptoCloud.Views.DiskFiles"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             DataContext="{Binding Source={StaticResource viewModelLocator}, Path=FilesEncryptionProgressInfoViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="240" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="FileEncryptionInfoItemTemplate">
+            <Border Padding="10" Width="400" Height="60">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel>
+                        <Image 
+                            DockPanel.Dock="Left"
+                            Width="30"
+                            Height="30"
+                            Source="pack://application:,,,/Images/FileRichtext.png"/>
+
+                        <TextBlock Text="{Binding Title}"
+                                   DockPanel.Dock="Top"
+                                   Style="{StaticResource RegularMediumWhite}" />
+
+                        <TextBlock Text="{Binding Title}"
+                                   DockPanel.Dock="Bottom"
+                                   FontWeight="Medium" 
+                                   Foreground="#707383"
+                                   FontSize="{StaticResource FontSizeRegular}" />
+                    </DockPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <UserControl.Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border x:Name="header"
+                                    Height="60"
+                                    Padding="15,10,10,10"
+                                    Background="#222329"
+                                    CornerRadius="20,20,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" MinWidth="10" />
+                                        <ColumnDefinition Width="16" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Text="{Binding EncyptionProgress, FallbackValue=Шифруем данные 21%}"
+                                               Grid.Column="0"
+                                                Foreground="White"
+                                                FontWeight="DemiBold"
+                                                LineHeight="20"
+                                                VerticalAlignment="Center"
+                                                FontSize="{StaticResource FontSizeRegular}"/>
+
+                                    <Image 
+                                        Grid.Column="2"
+                                         Width="16"
+                                         Height="16"
+                                         Source="pack://application:,,,/Images/ChevronDown.png">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                                <i:InvokeCommandAction
+                                                    Command="{Binding ToggleCommand}"
+                                                    CommandParameter="{Binding SelectedPhone}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Image>
+
+                                </Grid>
+                            </Border>
+
+                            <Border x:Name="fileEncryptionTasks">
+                                <ItemsControl ItemsSource="{Binding FileEncryptionTasks}" ItemTemplate="{Binding Source={StaticResource FileEncryptionInfoItemTemplate}}">
+                                </ItemsControl>
+                            </Border>
+                        </StackPanel>
+
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Minimised}" Value="True">
+                                <Setter TargetName="header" Property="CornerRadius" Value="20" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Minimised}" Value="False">
+                                <Setter TargetName="header" Property="CornerRadius" Value="20,20,0,0" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Style>
+
+    
+</UserControl>

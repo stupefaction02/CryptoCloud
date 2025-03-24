@@ -20,4 +20,12 @@
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource TextBlockLinkBrush}" />
     </Style>
+
+    <!-- FontSize, FontWeight, Foreground -->
+    <Style x:Key="RegularMediumWhite" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="LineHeight" Value="20" />
+    </Style>
 </ResourceDictionary>

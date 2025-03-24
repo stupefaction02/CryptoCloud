@@ -14,7 +14,7 @@ namespace CryptoCloud.ViewModels
 
         public LoginViewModel()
         {
-            LoginButtonCommand = new RelayCommand(x => { });
+            LoginButtonCommand = new RelayCommand<object>(x => { });
         }
     }
 }

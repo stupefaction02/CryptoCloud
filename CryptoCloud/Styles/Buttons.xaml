@@ -248,6 +248,63 @@
         </Setter>
     </Style>
 
+    <Style x:Key="UploadFileButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource ThirdPanelBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource SecondTextBlockBrush}"/>
+        <Setter Property="BorderBrush" Value="#45454A"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                    Height="{TemplateBinding Height}"
+                    Width="{TemplateBinding Width}"
+                    SnapsToDevicePixels="true">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Padding="20,15,15,15" 
+                                Grid.Column="0"
+                                Background="{TemplateBinding Background}" 
+                                CornerRadius="25,0,0,25">
+                                <TextBlock x:Name="contentPresenter" 
+                                  Focusable="False"
+                                  FontWeight="Bold"
+                                  LineHeight="20px"
+                                  FontSize="{StaticResource FontSizeRegular}"
+                                  Text="{TemplateBinding Content}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+
+                            <Border Grid.Column="1" Background="White" Height="Auto" Opacity="0.75" />
+                            
+                            <Border 
+                                Grid.Column="2"
+                                CornerRadius="0,25,25,0" 
+                                Background="{TemplateBinding Background}">
+                                <Image 
+                                    Width="16"
+                                    Height="16"
+                                    Margin="0,1,6,0"
+                                    Source="pack://application:,,,/Images/Upload.png"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="PlusIconButton" TargetType="{x:Type Button}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Background" Value="{StaticResource ThirdPanelBrush}"/>
@@ -392,6 +449,118 @@
                 <Setter Property="Background" Value="Transparent"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="InfoButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#222329"/>
+        <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}" 
+                        CornerRadius="25"
+                        SnapsToDevicePixels="true">
+                        <Border Padding="10,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Image 
+                                Width="16"
+                                Height="16"
+                                Margin="0,0,10,0"
+                                Source="pack://application:,,,/Images/Info.png"/>
+                                <TextBlock x:Name="contentPresenter" 
+                                      Focusable="False"
+                                      FontWeight="Bold"
+                                      LineHeight="20px"
+                                      FontSize="{StaticResource FontSizeRegular}"
+                                      Text="{TemplateBinding Content}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            />
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border"
+                        Value="Red"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DownloadButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#2886F1"/>
+        <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}" 
+                            CornerRadius="25"
+                            SnapsToDevicePixels="true">
+                        <Border Padding="10,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Image 
+                                    Width="16"
+                                    Height="16"
+                                    Margin="0,0,10,0"
+                                    Source="pack://application:,,,/Images/DownloadWhite.png"/>
+                                <TextBlock x:Name="contentPresenter" 
+                                      Focusable="False"
+                                      FontWeight="Bold"
+                                      LineHeight="20px"
+                                      FontSize="{StaticResource FontSizeRegular}"
+                                      Text="{TemplateBinding Content}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RemoveButton" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#222329"/>
+        <Setter Property="Foreground" Value="White"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                        Height="{TemplateBinding Height}"
+                        Background="{TemplateBinding Background}" 
+                        CornerRadius="25"
+                        SnapsToDevicePixels="true">
+                        <Border Padding="10,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <Image 
+                                    Width="16"
+                                    Height="16"
+                                    Margin="0,0,10,0"
+                                    Source="pack://application:,,,/Images/TrashWhite.png"/>
+                                <TextBlock x:Name="contentPresenter" 
+                                      Focusable="False"
+                                      FontWeight="Bold"
+                                      LineHeight="20px"
+                                      FontSize="{StaticResource FontSizeRegular}"
+                                      Text="{TemplateBinding Content}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </StackPanel>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <ResourceDictionary.MergedDictionaries>

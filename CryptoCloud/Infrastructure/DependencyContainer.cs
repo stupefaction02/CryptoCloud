@@ -24,11 +24,13 @@ namespace CryptoCloud.Infrastructure
             services.AddSingleton<MyDisksViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<DiskFilesViewModel>();
+            services.AddSingleton<FilesEncryptionProgressInfoViewModel>();
+            services.AddSingleton<IPopupService, PopupService>();
 
             serviceProvider = services.BuildServiceProvider();
         }
 
-        public static ServiceProvider serviceProvider { get; }
+        private static ServiceProvider serviceProvider;
 
         public static T Resolve<T>() => serviceProvider.GetRequiredService<T>();
     }

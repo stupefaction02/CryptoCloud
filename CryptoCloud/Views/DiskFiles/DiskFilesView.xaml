@@ -4,20 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views"
+             xmlns:diskFilesViews="clr-namespace:CryptoCloud.Views.DiskFiles"
              xmlns:controls="clr-namespace:CryptoCloud.UserControls"
+             xmlns:converters="clr-namespace:CryptoCloud.Converters"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=DiskFilesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="DiskFilesItemTemplate">
-            <UserControl Width="160" Height="179">
+            <UserControl Padding="0,10,0,0" Width="160" Height="179">
                 <UserControl.Style>
                     <Style TargetType="{x:Type UserControl}">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Type}" Value="folder">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <controls:DiskFolderItemView DataContext="{Binding Model}" Width="160" Height="179" />
+                                        <controls:DiskFolderItemView x:Name="folderItem" DataContext="{Binding Model}" Width="160" Height="179">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDoubleClick">
+                                                    <i:InvokeCommandAction
+                                                        Command="{Binding RelativeSource={RelativeSource
+                                                                    AncestorType={x:Type UserControl}, AncestorLevel=2}, 
+                                                                        UpdateSourceTrigger=PropertyChanged, Path=DataContext.FileClickedCommand}"
+                                                    CommandParameter="{Binding ElementName=folderItem, Path=DataContext}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </controls:DiskFolderItemView>
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
@@ -33,25 +46,15 @@
                             <DataTrigger Binding="{Binding Type}" Value="addFile">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <Border Width="250" 
-                        Height="350"
-                        CornerRadius="30"
-                        Background="#222329">
-                                            <StackPanel VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                                                <Image 
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                                Width="100"
-                                Height="100"
-                                Margin="0,0,0,20"
-                                Source="pack://application:,,,/Images/BigPlus.png"/>
-                                                <TextBlock Text="Добавить диск" 
-                                   Foreground="#707383"
-                                   FontWeight="Bold" 
-                                   LineHeight="30"
-                                   FontSize="{StaticResource FontSizeLarge}" />
-                                            </StackPanel>
+                                        <Border VerticalAlignment="Center"
+                                                HorizontalAlignment="Center">
+                                            <Image 
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                                Width="100"
+                                                Height="100"
+                                                Margin="0,0,0,20"
+                                                Source="pack://application:,,,/Images/PlushCircle.png"/>
                                         </Border>
                                     </Setter.Value>
                                 </Setter>
@@ -61,22 +64,18 @@
                 </UserControl.Style>
             </UserControl>
         </DataTemplate>
-
-        <CollectionViewSource
-            x:Key="PeopleViewSource"
-            IsSourceGrouped="True"
-            Source="{x:Bind ViewModel.Contacts, Mode=OneWay}" />
     </UserControl.Resources>
-    
-    <StackPanel Width="Auto" Orientation="Vertical">
-        <Grid Height="50" Margin="0,0,0,46">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding DiskOwner, FallbackValue=DiskOwner}"
+    <Grid>
+        <StackPanel Width="Auto" Orientation="Vertical">
+            <Grid Height="50" Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding DiskOwner, FallbackValue=DiskOwner}"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    FontWeight="DemiBold" 
@@ -85,46 +84,80 @@
                    LineHeight="30"
                    FontSize="{StaticResource FontSizeLarge}" />
 
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Content="По названию" 
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="По названию" 
                     Width="150" 
                     Height="50" 
                     Margin="0,0,10,0"
                     FontWeight="Medium"
                     Style="{StaticResource DropDownButton}" />
-                <Button Width="76" 
+                    <Button Width="76" 
                     Height="50" 
                     Style="{StaticResource DropDownzzWithIconButton}" />
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
 
-        <!--<controls:DiskFolderItemView Width="160" Height="179" />-->
-        <!--<controls:DiskFileItemView Width="160" Height="179" />-->
+            <Grid>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,30" HorizontalAlignment="Left">
+                    <Button Content="Последние" 
+                        Width="150" 
+                        HorizontalAlignment="Left"
+                        Height="50" 
+                        Margin="0,0,0,10"
+                        FontWeight="Medium"
+                        Style="{StaticResource DropDownButton}" />
+                    <ItemsControl x:Name="recentFiles" 
+                              ItemsSource="{Binding RecentFiles}"
+                              Background="Transparent"
+                              ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel 
+                    Orientation="Horizontal" 
+                    />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
 
-        <ListView x:Name="diskFiles" 
-                      Height="1000" 
-                  Background="Transparent"
-                      ItemTemplate="{DynamicResource DiskFilesItemTemplate}">
-            
-            <ListView.GroupStyle>
-                <GroupStyle HidesIfEmpty="True">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <Button Content="Все файлы" 
+                Width="150" 
+                Height="50" 
+                        HorizontalAlignment="Left"
+                Margin="0,0,0,10"
+                FontWeight="Medium"
+                Style="{StaticResource DropDownButton}" />
+                    <ItemsControl x:Name="allFiles" 
+                      Height="Auto" 
+                      ItemsSource="{Binding AllFiles}"
+                      Background="Transparent"
+                      ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
 
-                    <!--  Header template (you can see IReadOnlyObservableGroup being used here)  -->
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                FontSize="24"
-                                Text="{Binding Name}" />
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </ListView.GroupStyle>
+        <Canvas>
+            <Button Style="{StaticResource UploadFileButton}"
+                    Content="Загрузить файлы"
+                    Command="{Binding DownloadFilesCommand}"
+                    Background="#2886F1"
+                    Canvas.Bottom="40"
+                    Canvas.Right="40"
+                    Width="209" 
+                    Height="50" />
 
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ListView>
-    </StackPanel>
+            <diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
+                                                        Width="400" 
+                                                        Height="240"
+                                                        Canvas.Bottom="0"
+                                                        Canvas.Right="16"/>
+        </Canvas>
+    </Grid>
 </UserControl>

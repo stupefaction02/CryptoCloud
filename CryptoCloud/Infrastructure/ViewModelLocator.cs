@@ -14,6 +14,7 @@ namespace CryptoCloud.Infrastructure
         public MyDisksViewModel MyDiskViewModel => DependencyContainer.Resolve<MyDisksViewModel>();
         public MainViewModel MainViewModel => DependencyContainer.Resolve<MainViewModel>();
         public DiskFilesViewModel DiskFilesViewModel => DependencyContainer.Resolve<DiskFilesViewModel>();
+        public FilesEncryptionProgressInfoViewModel FilesEncryptionProgressInfoViewModel => DependencyContainer.Resolve<FilesEncryptionProgressInfoViewModel>();
 
         //public OverviewViewModel OverviewViewModel => DependencyContainer.Resolve<OverviewViewModel>();
 

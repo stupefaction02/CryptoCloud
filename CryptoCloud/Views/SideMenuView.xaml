@@ -29,7 +29,12 @@
                           ItemsSource="{Binding MenuItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button>
+                        <Button Tag="{Binding Uid}"
+                            Command="{Binding RelativeSource=
+                            {RelativeSource AncestorType={x:Type UserControl}}, 
+                                UpdateSourceTrigger=PropertyChanged, 
+                                Path=DataContext.ItemClickedCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag}">
                             <Button.Style>
                                 <Style TargetType="{x:Type Button}">
                                     <Setter Property="Template">
