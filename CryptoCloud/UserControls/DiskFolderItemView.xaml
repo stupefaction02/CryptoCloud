@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="CryptoCloud.UserControls.DiskFolderItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CryptoCloud.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="160" d:DesignWidth="179">
+    <Grid>
+        <Canvas>
+            
+        </Canvas>
+
+        <StackPanel>
+            <Image x:Name="folderImage"
+                Width="100"
+                Height="100"
+                Margin="0,0,0,8"
+                Source="pack://application:,,,/Images/FolderFill.png"/>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Margin="0,0,0,5"
+                        Width="100"
+                        VerticalAlignment="Center">
+                <Border 
+                    Width="20"
+                    Height="20"
+                    CornerRadius="10"
+                    Margin="0,0,16,0"
+                    Background="#9747FF">
+                    <Image 
+                        Width="8.009765625" 
+                        Height="10.447819709777832"
+                        Source="pack://application:,,,/Images/AvatarPlaceholder.png"/>
+                </Border>
+                <TextBlock Text="{Binding Name, FallbackValue=Папка 1}" 
+                           VerticalAlignment="Center"
+                           Foreground="#FFFFFF"
+                           FontWeight="Bold" 
+                           LineHeight="24"
+                           FontSize="{StaticResource FontSizeLargerRegular}" />
+            </StackPanel>
+            <TextBlock Text="{Binding ModificationDate, FallbackValue=24.03.2025 13:32}" 
+                       HorizontalAlignment="Center"
+                       Foreground="#707383"
+                       FontWeight="Bold" 
+                       LineHeight="20"
+                       FontSize="{StaticResource FontSizeRegular}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

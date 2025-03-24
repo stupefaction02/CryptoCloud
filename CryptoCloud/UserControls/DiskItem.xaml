@@ -39,18 +39,18 @@
                        FontWeight="Bold" 
                        LineHeight="30"
                        Margin="0,0,0,10"
-                       FontSize="{StaticResource FontSizeLarge}" />
+                       FontSize="{StaticResource FontSizeLargerRegular}" />
                 <TextBlock Text="{Binding Owner, FallbackValue=DiskOwner}" 
                        Foreground="#FFFFFF"
                        FontWeight="Bold" 
                        LineHeight="30"
                        Margin="0,0,0,10"
-                       FontSize="{StaticResource FontSizeLarge}" />
+                       FontSize="{StaticResource FontSizeLargerRegular}" />
                 <TextBlock Text="{Binding Size, FallbackValue=300GB}" 
                        Foreground="#707383"
                        FontWeight="Bold" 
                        LineHeight="30"
-                       FontSize="{StaticResource FontSizeLarge}" />
+                       FontSize="{StaticResource FontSizeLargerRegular}" />
             </StackPanel>
         </Border>
     </Grid>

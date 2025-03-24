@@ -32,6 +32,7 @@
     <None Remove="Images\DropDownButtonIcon.png" />
     <None Remove="Images\DropDownGroup.png" />
     <None Remove="Images\Folder.png" />
+    <None Remove="Images\FolderFill.png" />
     <None Remove="Images\gear.png" />
     <None Remove="Images\google_icon.png" />
     <None Remove="Images\key-fill.png" />
@@ -75,6 +76,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Folder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\FolderFill.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Gear.png">

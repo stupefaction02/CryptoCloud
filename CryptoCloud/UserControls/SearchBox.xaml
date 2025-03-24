@@ -13,14 +13,13 @@
         <ControlTemplate x:Key="TextBoxTemplate1" TargetType="{x:Type TextBoxBase}">
             <Border x:Name="border"
                     CornerRadius="25"
-                    
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
                     SnapsToDevicePixels="True">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="28" />
                         <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
@@ -31,14 +30,23 @@
                              Height="20"
                              Source="pack://application:,,,/Images/SearchIcon.png"/>
                     </Border>
-                    
-                    <ScrollViewer x:Name="PART_ContentHost" 
-                                  Grid.Column="2"
+
+                    <Grid Grid.Column="2" 
+                          Margin="0,4,0,0">
+                        <TextBlock x:Name="placeholder" 
+                                   LineHeight="24"
+                                   Foreground="#707383"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontStretch="{TemplateBinding FontStretch}"
+                                   FontSize="{TemplateBinding FontSize}">
+                            Поиск
+                        </TextBlock>
+                        <ScrollViewer x:Name="PART_ContentHost" 
                                   Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}, Path=ActualWidth}"
                                   Focusable="false" 
-                                  Margin="0,4,0,0"
                                   HorizontalScrollBarVisibility="Hidden" 
                                   VerticalScrollBarVisibility="Hidden"/>
+                    </Grid>
                 </Grid>
                 
             </Border>
@@ -52,6 +60,8 @@
                 <Trigger Property="IsKeyboardFocused" Value="true">
                     <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
                     <Setter Property="Padding" TargetName="border" Value="6,6,14,6"/>
+                    <Setter Property="Visibility" TargetName="placeholder" Value="Collapsed"/>
+                    <Setter Property="BorderThickness" TargetName="border" Value="1"/>
                 </Trigger>
 
                 <!--<Trigger Property="IsMouseOver" Value="False">
@@ -62,6 +72,7 @@
                     <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                     <Setter Property="BorderThickness" TargetName="border" Value="0"/>
                     <Setter Property="Padding" TargetName="border" Value="7,7,15,7"/>
+                    <Setter Property="Visibility" TargetName="placeholder" Value="Visible"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

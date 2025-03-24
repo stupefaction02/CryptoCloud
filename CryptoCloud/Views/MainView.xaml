@@ -38,6 +38,14 @@
                                     </Setter>
                                 </DataTrigger>
 
+                                <DataTrigger Binding="{Binding ViewKey}" Value="DiskFiles">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <views:DiskFilesView DataContext="{Binding DataContext}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+
                                 <!-- Other views, depends on what sidebar item we've clicked -->
                             </Style.Triggers>
                         </Style>

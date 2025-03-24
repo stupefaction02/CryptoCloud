@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoCloud.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace CryptoCloud.ViewModels
 
         public MainViewModel()
         {
-            ViewNavigationModel = new ViewNavigationModel { DataContext = new MyDisksViewModel(), ViewKey = "MyDisks" };
+            ViewNavigationModel = new ViewNavigationModel { DataContext = new DiskFilesViewModel(), ViewKey = "DiskFiles" };
         }
     }
 }
