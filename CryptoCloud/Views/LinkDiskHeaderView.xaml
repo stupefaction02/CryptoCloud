@@ -31,10 +31,11 @@
                         Content="Подключеные диски"/>
                 <Button Width="156" 
                         Height="50"
+                        FontWeight="Bold"
                         Margin="0,0,10,0"
                         Content="BP Премиум" >
                     <Button.Style>
-                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource 25RoundedButton}">
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RoundedButton}">
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">

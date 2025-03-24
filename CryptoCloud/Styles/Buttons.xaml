@@ -35,7 +35,7 @@
                             SnapsToDevicePixels="true">
                         <TextBlock x:Name="contentPresenter" 
                                           Focusable="False"
-                                          FontWeight="Bold"
+                                          FontWeight="{TemplateBinding FontWeight}"
                                           FontSize="{StaticResource FontSizeRegular}"
                                           Text="{TemplateBinding Content}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -53,12 +53,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="25RoundedButton" TargetType="{x:Type Button}" BasedOn="{StaticResource Default}">
+    <Style x:Key="RoundedButton" TargetType="{x:Type Button}" BasedOn="{StaticResource Default}">
         <Setter Property="Border.CornerRadius" Value="25" />
     </Style>
 
     <Style x:Key="BlueGradientButton" TargetType="{x:Type Button}" BasedOn="{StaticResource Default}">
         <Setter Property="Border.CornerRadius" Value="25" />
+        <Setter Property="FontWeight" Value="Bold" />
 
         <Setter Property="Background">
             <Setter.Value>
@@ -264,11 +265,12 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="1"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
                             <Border Padding="15,15,30,15" 
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 Background="{TemplateBinding Background}" 
                                 CornerRadius="0,25,25,0">
                                 <TextBlock x:Name="contentPresenter" 
@@ -281,12 +283,12 @@
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
 
+                            <Border Grid.Column="1" Background="White" Height="Auto" Opacity="0.75" />
+
                             <Border 
                                 Width="50"
                                 Grid.Column="0"
                                 CornerRadius="25,0,0,25" 
-                                BorderBrush="White"
-                                BorderThickness="0,0,1,0"
                                 Background="{TemplateBinding Background}" >
                                 <Image 
                                     RenderOptions.BitmapScalingMode="LowQuality"

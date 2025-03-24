@@ -35,9 +35,12 @@
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate>
-                                                <Border Width="Auto" Height="60" Padding="28,0,0,0">
+                                                <Border x:Name="border" 
+                                                        Width="Auto" 
+                                                        Height="60" 
+                                                        Padding="28,0,0,0">
                                                     <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
-                                                        <Image 
+                                                        <Image x:Name="image"
                                                             Margin="0,0,10,0"
                                                             Width="20"
                                                             Height="20"
@@ -51,6 +54,16 @@
                                                         </TextBlock>
                                                     </StackPanel>
                                                 </Border>
+
+                                                <ControlTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <Setter TargetName="border" Property="Background" Value="#222329"/>
+                                                        <Setter TargetName="border" Property="BorderBrush" Value="#45454A"/>
+                                                        <Setter TargetName="border" Property="BorderThickness" Value="2,0,0,0"/>
+                                                    </DataTrigger>
+                                                    
+                                                    <!-- Trigger for changing the image -->
+                                                </ControlTemplate.Triggers>
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>

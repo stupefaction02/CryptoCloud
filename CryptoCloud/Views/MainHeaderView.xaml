@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views" 
+             xmlns:controls="clr-namespace:CryptoCloud.UserControls" 
              xmlns:viewmodels="clr-namespace:CryptoCloud.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewmodels:LinkDiskHeaderViewModel}"
              mc:Ignorable="d" 
@@ -40,7 +41,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <!--<TextBox />-->
+
+                <controls:SearchBox Width="150" Height="50" />
+
                 <Image 
                     Width="30"
                     Height="30"

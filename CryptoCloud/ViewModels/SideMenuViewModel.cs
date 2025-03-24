@@ -25,7 +25,7 @@ namespace CryptoCloud.ViewModels
             {
                 new SideMenuItemModel { Text = "Последние", ImageSource = "pack://application:,,,/Images/Clock.png" },
                 new SideMenuItemModel { Text = "Файлы", ImageSource = "pack://application:,,,/Images/Folder.png" },
-                new SideMenuItemModel { Text = "Мои диски", ImageSource = "pack://application:,,,/Images/Cloud.png" },
+                new SideMenuItemModel { IsSelected = true, Text = "Мои диски", ImageSource = "pack://application:,,,/Images/Cloud.png" },
                 new SideMenuItemModel { Text = "Загрузки", ImageSource = "pack://application:,,,/Images/Download.png" },
                 new SideMenuItemModel { Text = "Настройки", ImageSource = "pack://application:,,,/Images/Gear.png" },
                 new SideMenuItemModel { Text = "Корзина", ImageSource = "pack://application:,,,/Images/Trash.png" },
