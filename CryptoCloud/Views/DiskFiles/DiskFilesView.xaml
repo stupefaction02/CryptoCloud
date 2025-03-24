@@ -20,6 +20,7 @@
                             <DataTrigger Binding="{Binding Type}" Value="folder">
                                 <Setter Property="Content">
                                     <Setter.Value>
+                                        <!--<TextBlock Style="{StaticResource RegularMediumWhite}" Text="{Binding Model.Name}"/>-->
                                         <controls:DiskFolderItemView x:Name="folderItem" DataContext="{Binding Model}" Width="160" Height="179">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -107,20 +108,18 @@
                         FontWeight="Medium"
                         Style="{StaticResource DropDownButton}" />
                     <ItemsControl x:Name="recentFiles" 
+                                  ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}"
                               ItemsSource="{Binding RecentFiles}"
-                              Background="Transparent"
-                              ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}">
+                              Background="Transparent">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel 
-                    Orientation="Horizontal" 
-                    />
+                                <StackPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Visibility="Collapsed" Orientation="Vertical" HorizontalAlignment="Left">
                     <Button Content="Все файлы" 
                 Width="150" 
                 Height="50" 

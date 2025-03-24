@@ -62,7 +62,7 @@ namespace CryptoCloud.ViewModels
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "x-file.png", ModificationDate = "8.03.2023 11:32" } },
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "ABOBA.png", ModificationDate = "28.13.2023 11:32" } },
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "x-file (1).png", ModificationDate = "89.01.2123 29:32" } },
-                //new DiskItemViewModel { Type = "addFile" },
+                new DiskItemViewModel { Type = "addFile" },
             };
 
             RecentFiles = new ObservableCollection<DiskItemViewModel>
@@ -74,6 +74,7 @@ namespace CryptoCloud.ViewModels
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "x-file.png", ModificationDate = "8.03.2023 11:32" } },
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "ABOBA.png", ModificationDate = "28.13.2023 11:32" } },
                 new DiskItemViewModel { Type = "file", Model = new DiskFolderModel { Name = "x-file (1).png", ModificationDate = "89.01.2123 29:32" } },
+                new DiskItemViewModel { Type = "addFile" },
             };
 
             DownloadFilesCommand = new RelayCommand(DownloadFilesCommandHandler);
