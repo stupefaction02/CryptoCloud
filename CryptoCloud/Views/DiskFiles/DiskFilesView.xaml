@@ -38,7 +38,8 @@
             </StackPanel>
         </Grid>
 
-        <controls:DiskFolderItemView Width="160" Height="179" />
+        <!--<controls:DiskFolderItemView Width="160" Height="179" />-->
+        <!--<controls:DiskFileItemView Width="160" Height="179" />-->
 
         <ItemsControl x:Name="disks" Height="1000" ItemsSource="{Binding Files}">
 
@@ -50,46 +51,53 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Padding="0" Margin="0,0,30,30" Width="250" Height="350">
+                    <Button Padding="0" Width="160" Height="179">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AssetsMainEntity.TransparentButton}">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate>
-
                                             <UserControl>
-                                                <!--<UserControl.Style>
+                                                <UserControl.Style>
                                                     <Style TargetType="{x:Type UserControl}">
                                                         <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Type}" Value="item">
+                                                            <DataTrigger Binding="{Binding Type}" Value="folder">
                                                                 <Setter Property="Content">
                                                                     <Setter.Value>
-                                                                        <controls:DiskItem Width="250" Height="350" DataContext="{Binding DiskModel}" />
+                                                                        <controls:DiskFolderItemView DataContext="{Binding Model}" Width="160" Height="179" />
                                                                     </Setter.Value>
                                                                 </Setter>
                                                             </DataTrigger>
 
-                                                            <DataTrigger Binding="{Binding Type}" Value="addButton">
+                                                            <DataTrigger Binding="{Binding Type}" Value="file">
+                                                                <Setter Property="Content">
+                                                                    <Setter.Value>
+                                                                        <controls:DiskFileItemView DataContext="{Binding Model}" Width="160" Height="179" />
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding Type}" Value="addFile">
                                                                 <Setter Property="Content">
                                                                     <Setter.Value>
                                                                         <Border Width="250" 
-                                                                            Height="350"
-                                                                            CornerRadius="30"
-                                                                            Background="#222329">
+                                                                                Height="350"
+                                                                                CornerRadius="30"
+                                                                                Background="#222329">
                                                                             <StackPanel VerticalAlignment="Center"
-                                                                                    HorizontalAlignment="Center" >
+                                                                                        HorizontalAlignment="Center">
                                                                                 <Image 
-                                                                               VerticalAlignment="Center"
-                                                                               HorizontalAlignment="Center"
-                                                                                Width="100"
-                                                                                Height="100"
-                                                                                Margin="0,0,0,20"
-                                                                                Source="pack://application:,,,/Images/BigPlus.png"/>
+                                                                                       VerticalAlignment="Center"
+                                                                                       HorizontalAlignment="Center"
+                                                                                        Width="100"
+                                                                                        Height="100"
+                                                                                        Margin="0,0,0,20"
+                                                                                        Source="pack://application:,,,/Images/BigPlus.png"/>
                                                                                 <TextBlock Text="Добавить диск" 
-                                                                               Foreground="#707383"
-                                                                               FontWeight="Bold" 
-                                                                               LineHeight="30"
-                                                                               FontSize="{StaticResource FontSizeLarge}" />
+                                                                                           Foreground="#707383"
+                                                                                           FontWeight="Bold" 
+                                                                                           LineHeight="30"
+                                                                                           FontSize="{StaticResource FontSizeLarge}" />
                                                                             </StackPanel>
                                                                         </Border>
                                                                     </Setter.Value>
@@ -97,7 +105,7 @@
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
-                                                </UserControl.Style>-->
+                                                </UserControl.Style>
                                             </UserControl>
                                         </ControlTemplate>
                                     </Setter.Value>
