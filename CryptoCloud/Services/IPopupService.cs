@@ -9,6 +9,6 @@ namespace CryptoCloud.Services
 {
     public interface IPopupService
     {
-        void ShowFileInfoPopup(DiskFileItemModel fileInfo);
+        void ShowFileInfoPopup(DiskItemModel fileInfo);
     }
 }

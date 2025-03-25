@@ -24,7 +24,7 @@ namespace CryptoCloud.Services
         {
         }
 
-        public void ShowFileInfoPopup(DiskFileItemModel fileInfo)
+        public void ShowFileInfoPopup(DiskItemModel fileInfo)
         {
             
         }

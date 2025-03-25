@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views"
+             xmlns:models="clr-namespace:CryptoCloud.Models"
              xmlns:diskFilesViews="clr-namespace:CryptoCloud.Views.DiskFiles"
              xmlns:controls="clr-namespace:CryptoCloud.UserControls"
              xmlns:converters="clr-namespace:CryptoCloud.Converters"
@@ -12,58 +13,14 @@
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=DiskFilesViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <DataTemplate x:Key="DiskFilesItemTemplate">
-            <UserControl Padding="0,10,0,0" Width="160" Height="179">
-                <UserControl.Style>
-                    <Style TargetType="{x:Type UserControl}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Type}" Value="folder">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <!--<TextBlock Style="{StaticResource RegularMediumWhite}" Text="{Binding Model.Name}"/>-->
-                                        <controls:DiskFolderItemView x:Name="folderItem" DataContext="{Binding Model}" Width="160" Height="179">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseDoubleClick">
-                                                    <i:InvokeCommandAction
-                                                        Command="{Binding RelativeSource={RelativeSource
-                                                                    AncestorType={x:Type UserControl}, AncestorLevel=2}, 
-                                                                        UpdateSourceTrigger=PropertyChanged, Path=DataContext.FileClickedCommand}"
-                                                    CommandParameter="{Binding ElementName=folderItem, Path=DataContext}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </controls:DiskFolderItemView>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+        <DataTemplate DataType="{x:Type models:DiskFileModel}">
+            <!--<TextBlock Style="{StaticResource RegularMediumWhite}" Text="{Binding Name}"/>-->
 
-                            <DataTrigger Binding="{Binding Type}" Value="file">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <controls:DiskFileItemView DataContext="{Binding Model}" Width="160" Height="179" />
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+            <controls:DiskFileItemView x:Name="fileItem" DataContext="{Binding Model}" Width="160" Height="179" />
+        </DataTemplate>
 
-                            <DataTrigger Binding="{Binding Type}" Value="addFile">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <Border VerticalAlignment="Center"
-                                                HorizontalAlignment="Center">
-                                            <Image 
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                                Width="100"
-                                                Height="100"
-                                                Margin="0,0,0,20"
-                                                Source="pack://application:,,,/Images/PlushCircle.png"/>
-                                        </Border>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </UserControl.Style>
-            </UserControl>
+        <DataTemplate DataType="{x:Type models:DiskFolderModel}">
+            <controls:DiskFolderItemView x:Name="folderItem" DataContext="{Binding Model}" Width="160" Height="179" />
         </DataTemplate>
     </UserControl.Resources>
 
@@ -108,29 +65,34 @@
                         FontWeight="Medium"
                         Style="{StaticResource DropDownButton}" />
                     <ItemsControl x:Name="recentFiles" 
-                                  ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}"
+                                  ItemsSource="{Binding RecentFiles}"
                               Background="Transparent">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:DiskFileItemModel}">
+                                <ContentControl Content="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
 
                 <StackPanel Visibility="Collapsed" Orientation="Vertical" HorizontalAlignment="Left">
                     <Button Content="Все файлы" 
-                Width="150" 
-                Height="50" 
-                        HorizontalAlignment="Left"
-                Margin="0,0,0,10"
-                FontWeight="Medium"
-                Style="{StaticResource DropDownButton}" />
+                            Width="150" 
+                            Height="50" 
+                            HorizontalAlignment="Left"
+                            Margin="0,0,0,10"
+                            FontWeight="Medium"
+                            Style="{StaticResource DropDownButton}" />
                     <ItemsControl x:Name="allFiles" 
                       Height="Auto" 
                       ItemsSource="{Binding AllFiles}"
-                      Background="Transparent"
-                      ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}">
+                      Background="Transparent">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />
