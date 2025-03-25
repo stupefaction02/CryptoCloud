@@ -1,6 +1,8 @@
 ﻿using CryptoCloud.Services;
 using CryptoCloud.Validators;
 using CryptoCloud.ViewModels;
+using CryptoCloud.ViewModels.MainView;
+using CryptoCloud.ViewModels.MainWindowViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,7 +18,6 @@ namespace CryptoCloud.Infrastructure
             services.ConfigureLoggerFactory();
 
             services.AddSingleton<ApplicationInfoManager>();
-            services.AddSingleton<Navigation>();
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<LinkDiskViewModel>();
@@ -26,17 +27,19 @@ namespace CryptoCloud.Infrastructure
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<DiskFilesViewModel>();
             services.AddSingleton<FilesEncryptionProgressInfoViewModel>();
-            services.AddSingleton<IPopupService, PopupService>();
+            services.AddSingleton<MainWindowNavigator>();
+            services.AddSingleton<PopupsViewModel>();
+            services.AddSingleton<NavigationViewModel>();
 
             services.AddSingleton<IPopupService, PopupService>();
             services.AddSingleton<UserModelValidator>();
 
-            serviceProvider = services.BuildServiceProvider();
+            serviceProvider = new Lazy<IServiceProvider>(services.BuildServiceProvider());
         }
 
-        private static ServiceProvider serviceProvider;
+        private static readonly Lazy<IServiceProvider> serviceProvider;
 
-        public static T Resolve<T>() => serviceProvider.GetRequiredService<T>();
+        public static T Resolve<T>() => serviceProvider.Value.GetRequiredService<T>();
     }
 
     public static class ServicesExtrensions

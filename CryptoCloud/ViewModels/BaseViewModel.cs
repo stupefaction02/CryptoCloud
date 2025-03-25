@@ -15,5 +15,7 @@ namespace CryptoCloud.ViewModels
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 		}
-	}
+
+        public string NavigationId { get; set; }
+    }
 }

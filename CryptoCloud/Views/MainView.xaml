@@ -11,7 +11,7 @@
     <Grid x:Name="mainViewGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition MinHeight="15" />
+            <RowDefinition MinHeight="15" MaxHeight="15" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 

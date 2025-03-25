@@ -1,5 +1,4 @@
-﻿using CryptoCloud.ViewModels;
-using CryptoCloud.Services;
+﻿using CryptoCloud.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,29 +10,12 @@ using CryptoCloud.Services;
 using CryptoCloud.Views;
 using CommunityToolkit.Mvvm.Input;
 using CryptoCloud.Infrastructure;
+using CryptoCloud.Models;
+using System.Collections;
+using CryptoCloud.ViewModels.MainWindowViewModels;
 
 namespace CryptoCloud.ViewModels
 {
-    public class ViewNavigationModel
-    {
-        private string dataContextKey = "_default";
-
-        public BaseViewModel DataContext { get; set; }
-
-        public string ViewKey 
-        { 
-            get
-            {
-                return dataContextKey;
-            }
-            
-            set
-            {
-                dataContextKey = value;
-            }
-        }
-    }
-
     public class MainWindowViewModel : BaseViewModel
     {
         #region Window Chrome
@@ -114,18 +96,6 @@ namespace CryptoCloud.ViewModels
             }
         }
 
-        private InfoMessage infoMessage;
-
-        public InfoMessage InfoMessage
-        {
-            get => infoMessage;
-            set
-            {
-                infoMessage = value;
-                OnPropertyChanged(nameof(InfoMessage));
-            }
-        }
-
         private bool hideInfoBar;
 
         public bool HideInfoBar
@@ -134,10 +104,14 @@ namespace CryptoCloud.ViewModels
             set { hideInfoBar = value; OnPropertyChanged(nameof(HideInfoBar)); }
         }
 
+        public BaseViewModel CurrentView { get; set; }
 
         #endregion
 
-        public MainWindowViewModel(Navigation navigation, ApplicationInfoManager infoManager)
+        public PopupsViewModel PopupsViewModel { get; set; }
+        public NavigationViewModel NavigationViewModel { get; set; }
+
+        public MainWindowViewModel()
         {
             this.mainWindow = Application.Current.MainWindow as MainWindow;
 
@@ -146,23 +120,12 @@ namespace CryptoCloud.ViewModels
             Minimize = new RelayCommand(() => mainWindow.WindowState ^= WindowState.Minimized);
             Close = new RelayCommand(() => mainWindow.Close());
 
-            infoManager.NewInfoMessage += info =>
-            {
-                RunInfoBarAnimation = true;
-                InfoMessage = info;
-            };
+            var navigator = DependencyContainer.Resolve<MainWindowNavigator>();
 
-            infoManager.SignaledToHide += () =>
-            {
-                //   RunInfoBarAnimation = false;
-                HideInfoBar = true;
-                InfoMessage = null;
-            };
+            PopupsViewModel = DependencyContainer.Resolve<PopupsViewModel>();
+            NavigationViewModel = DependencyContainer.Resolve<NavigationViewModel>();
 
-            navigation.OnPageChanged += page => CurrentPage = page;
-            //navigation.Navigate(new Pages.LoginPage());
-
-            ViewNavigationModel = new ViewNavigationModel() { DataContext = DependencyContainer.Resolve<LoginViewModel>(), ViewKey = "Login" };
+            navigator.NavigateToView<LoginViewModel>();
         }
 
         private void MainWindowStateChanged(object sender, EventArgs e)

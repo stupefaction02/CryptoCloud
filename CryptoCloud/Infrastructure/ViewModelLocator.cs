@@ -1,5 +1,6 @@
 ﻿using CryptoCloud.Infrastructure;
 using CryptoCloud.ViewModels;
+using CryptoCloud.ViewModels.MainView;
 using System;
 using System.Collections.Generic;
 using System.Text;

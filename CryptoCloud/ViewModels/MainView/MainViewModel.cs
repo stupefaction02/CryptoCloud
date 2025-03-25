@@ -1,4 +1,5 @@
 ﻿using CryptoCloud.Infrastructure;
+using CryptoCloud.Models;
 using CryptoCloud.Views;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoCloud.ViewModels
+namespace CryptoCloud.ViewModels.MainView
 {
     public class MainViewModel : BaseViewModel
     {

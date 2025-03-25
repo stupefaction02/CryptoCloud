@@ -5,8 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views"
              mc:Ignorable="d" 
-             Width="1440" 
-             Height="900"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="linkDiskViewGrid">
         <Grid.RowDefinitions>
@@ -15,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <Border Padding="16,16,16,0">
-            <local:LinkDiskHeaderView x:Name="linkDiskViewHeader" Grid.Row="0" />
+            <local:LinkDiskHeaderView MinWidth="600" x:Name="linkDiskViewHeader" Grid.Row="0" />
         </Border>
         
         <StackPanel x:Name="linkDiskContent"
@@ -37,6 +35,7 @@
             </TextBlock>
 
             <Button Style="{StaticResource LinkDiskButton}"
+                    Command="{Binding LinkDiskCommand}"
                     Content="Подлкючить диск"
                     Background="#2886F1" 
                     Width="222" 

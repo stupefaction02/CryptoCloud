@@ -6,6 +6,9 @@
         xmlns:views="clr-namespace:CryptoCloud.Views"
         xmlns:diskFilesViews="clr-namespace:CryptoCloud.Views.DiskFiles"
         xmlns:local="clr-namespace:CryptoCloud"
+        xmlns:viewModels="clr-namespace:CryptoCloud.ViewModels" 
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
         mc:Ignorable="d"
         x:Name="window"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
@@ -15,32 +18,33 @@
             <UserControl x:Name="viewSwitch" 
                          Background="#16171D"
                          Width="{Binding ElementName=window, Path=ActualWidth}"
+                         Height="{Binding ElementName=window, Path=ActualHeight}"
                          HorizontalAlignment="Center" VerticalAlignment="Center"
-                         DataContext="{Binding ViewNavigationModel}" 
+                         DataContext="{Binding NavigationViewModel.Content}" 
                          Padding="16,16,16,0">
                 <UserControl.Style>
                     <Style TargetType="{x:Type UserControl}">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ViewKey}" Value="LinkDisk">
+                            <DataTrigger Binding="{Binding NavigationId}" Value="LinkDiskViewModel">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <views:LinkDIskView DataContext="{Binding DataContext}" />
+                                        <views:LinkDIskView />
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding ViewKey}" Value="Login">
+                            <DataTrigger Binding="{Binding NavigationId}" Value="LoginViewModel">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <views:LoginView Width="780" Height="650" DataContext="{Binding DataContext}" />
+                                        <views:LoginView Width="780" Height="650" />
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding ViewKey}" Value="Main">
+                            <DataTrigger Binding="{Binding NavigationId}" Value="MainViewModel">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <views:MainView DataContext="{Binding DataContext}" />
+                                        <views:MainView />
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
@@ -49,12 +53,30 @@
                 </UserControl.Style>
             </UserControl>
 
-            <diskFilesViews:FilePopup x:Name="fileInfoPopup" 
+            <Border Height="80" 
+                    Canvas.Top="-80" 
+                    Canvas.Left="0"
+                ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ToggleFileInfoPopup}">
+                <diskFilesViews:FilePopup 
+                          x:Name="fileInfoPopup" 
                           Height="80" 
-                                      Visibility="Collapsed"
-                          Width="{Binding ElementName=window, Path=ActualWidth}"
-                          Canvas.Top="0" 
-                          Canvas.Left="0" />
+                          Visibility="Collapsed"
+                          Width="{Binding ElementName=window, Path=ActualWidth}">
+                    <!--<i:Interaction.Triggers>
+                    <DataTrigger Binding="{Binding ToggleFileInfoPopup}" Value="True">
+                        <DataTrigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard Timeline.DesiredFrameRate="60">
+                                    <DoubleAnimation Storyboard.TargetName="ball" Storyboard.TargetProperty="(Canvas.Top)"
+                         From="-80" To="0" AutoReverse="True" Duration="0:0:2.5"
+                         DecelerationRatio="1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </DataTrigger.EnterActions>
+                    </DataTrigger>
+                </i:Interaction.Triggers>-->
+                </diskFilesViews:FilePopup>
+            </Border>
         </Canvas>
     </Grid>
 </Window>

@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CryptoCloud.Models;
+using CryptoCloud.Services;
 using CryptoCloud.Validators;
+using CryptoCloud.Views;
 using FluentValidation.Results;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,6 +17,7 @@ namespace CryptoCloud.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly MainWindowNavigator mainWindowNavigator;
         private readonly UserModelValidator validator;
 
         private readonly ILogger logger;
@@ -23,9 +26,10 @@ namespace CryptoCloud.ViewModels
 
         public UserModel User { get; set; } = new UserModel();
 
-        public LoginViewModel(UserModelValidator validator, ILoggerFactory loggerFactory)
+        public LoginViewModel(MainWindowNavigator mainWindowNavigator, UserModelValidator validator, ILoggerFactory loggerFactory)
         {
             LoginButtonCommand = new AsyncRelayCommand(LoginButtonCommandHandler);
+            this.mainWindowNavigator = mainWindowNavigator;
             this.validator = validator;
 
             logger = loggerFactory.CreateLogger<LoginViewModel>();
@@ -42,6 +46,8 @@ namespace CryptoCloud.ViewModels
             if (serverValidationIsOk && clientValidation.IsValid)
             {
                 logger.LogInformation($"User validation success.");
+
+                mainWindowNavigator.NavigateToView<LinkDiskViewModel>();
             }
             else
             {

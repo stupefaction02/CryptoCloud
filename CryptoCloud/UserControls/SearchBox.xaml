@@ -80,6 +80,7 @@
     <TextBox Template="{DynamicResource TextBoxTemplate1}"
              Background="#222329" 
              Foreground="White"
+             FontFamily="{StaticResource SfProTextRegular}"
              FontSize="{StaticResource FontSizeLarge}"
              Width="Auto" Height="Auto">
         

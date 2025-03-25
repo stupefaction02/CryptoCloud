@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views" 
+             xmlns:controls="clr-namespace:CryptoCloud.UserControls" 
              xmlns:viewmodels="clr-namespace:CryptoCloud.ViewModels" 
              d:DataContext="{d:DesignInstance Type=viewmodels:LinkDiskHeaderViewModel}"
              mc:Ignorable="d" 
@@ -23,19 +24,23 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Button Width="414" 
+                <Button Width="238" 
                         Height="50"
                         Margin="0,0,10,0"
                         FontWeight="Bold"
+                        FontFamily="{StaticResource InterRegular}"
                         Style="{StaticResource DropDownButton}"
                         Content="Подключеные диски"/>
                 <Button Width="156" 
                         Height="50"
+                        FontFamily="{StaticResource JetbrainsMonoRegular}"
                         FontWeight="Bold"
                         Margin="0,0,10,0"
                         Content="BP Премиум" >
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource RoundedButton}">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="Red"/>
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
@@ -50,7 +55,9 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <!--<TextBox />-->
+
+                <controls:SearchBox Width="300" Height="50" />
+
                 <Image 
                     Width="30"
                     Height="30"

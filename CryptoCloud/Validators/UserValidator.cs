@@ -13,15 +13,15 @@ namespace CryptoCloud.Validators
     {
         public UserModelValidator()
         {
-            RuleFor(customer => customer.Email)
-                .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
-                .MaximumLength(100)
-                .NotNull();
+            //RuleFor(customer => customer.Email)
+            //    .EmailAddress(FluentValidation.Validators.EmailValidationMode.AspNetCoreCompatible)
+            //    .MaximumLength(100)
+            //    .NotNull();
 
-            RuleFor(customer => customer.Password)
-                .MinimumLength(8)
-                .MaximumLength(50)
-                .NotNull();
+            //RuleFor(customer => customer.Password)
+            //    .MinimumLength(8)
+            //    .MaximumLength(50)
+            //    .NotNull();
         }
     }
 }

@@ -60,7 +60,7 @@ namespace CryptoCloud.ViewModels
 
         private void FileClickedCommandHandler(object parameter)
         {
-            if (parameter is DiskItemModel vm)
+            if (parameter is DiskModel vm)
             {
                 popupService.ShowFileInfoPopup(vm);
             }

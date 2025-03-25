@@ -10,21 +10,24 @@ namespace CryptoCloud.Services
 {
     public class PopupService : IPopupService
     {
-        private MainWindowViewModel mainWindowViewModel;
+        // causes dependency loop :)
+        //private MainWindowViewModel mainWindowViewModel;
 
-        private MainWindowViewModel MainWindowViewModel
-        {
-            get
-            {
-                return mainWindowViewModel ?? (mainWindowViewModel = DependencyContainer.Resolve<MainWindowViewModel>());
-            }
-        }
+        //private MainWindowViewModel MainWindowViewModel
+        //{
+        //    get
+        //    {
+        //        return mainWindowViewModel ?? (mainWindowViewModel = DependencyContainer.Resolve<MainWindowViewModel>());
+        //    }
+        //}
+
+        // thus, we created another viewmodel that is subservient to mainWindowViewModel, let's call it PopupViewModel
 
         public PopupService()
         {
         }
 
-        public void ShowFileInfoPopup(DiskItemModel fileInfo)
+        public void ShowFileInfoPopup(DiskModel fileInfo)
         {
             
         }

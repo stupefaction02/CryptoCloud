@@ -96,9 +96,6 @@ namespace CryptoCloud.UserControls
         private void Text_TextChanged(object sender, RoutedEventArgs e)
         {
             Text = this.textBox.Password;
-
-            //BindingExpression be = this.GetBindingExpression(InputTextBox.TextProperty);
-            //be.UpdateSource();
         }
     }
 }
