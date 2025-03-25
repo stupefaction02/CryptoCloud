@@ -109,11 +109,10 @@
                         Style="{StaticResource DropDownButton}" />
                     <ItemsControl x:Name="recentFiles" 
                                   ItemTemplate="{Binding Source={StaticResource DiskFilesItemTemplate}}"
-                              ItemsSource="{Binding RecentFiles}"
                               Background="Transparent">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
+                                <WrapPanel />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
