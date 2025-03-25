@@ -168,7 +168,10 @@
     <Compile Update="UserControls\DiskFileItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\InputTextBox.xaml.cs">
+    <Compile Update="UserControls\DefaultPasswordBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\DefaultTextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\MainHeaderView.xaml.cs">

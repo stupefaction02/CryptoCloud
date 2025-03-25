@@ -76,7 +76,7 @@
                         </Grid>
                     </Border>
 
-                    <controls:InputTextBox Placeholder="Твоя почта" 
+                    <controls:DefaultTextBox Placeholder="Твоя почта" 
                                            Background="Transparent"
                                            Height="50" 
                                            MinWidth="50" 
@@ -86,10 +86,11 @@
                     <controls:InputError DataContext="{Binding EmailErrorViewModel}" Margin="0,0,0,10" />
 
                     <!--<TextBox Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />-->
-                    <controls:InputTextBox Placeholder="Пароль" 
+                    <controls:DefaultPasswordBox Placeholder="Пароль" 
                                            Background="Transparent"
                                            Height="50" 
                                            MinWidth="50" 
+                                           Text="{Binding Path=User.Password, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
                                            Margin="0,0,0,10" />
 
                     <controls:InputError DataContext="{Binding PasswordErrorViewModel}" Margin="0,0,0,10" />

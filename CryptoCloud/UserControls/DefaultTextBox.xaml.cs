@@ -19,7 +19,7 @@ namespace CryptoCloud.UserControls
     /// <summary>
     /// Логика взаимодействия для SearchBox.xaml
     /// </summary>
-    public partial class InputTextBox : UserControl
+    public partial class DefaultTextBox : UserControl
     {
         public string Placeholder
         {
@@ -31,7 +31,7 @@ namespace CryptoCloud.UserControls
                 DependencyProperty.Register(
                         "Placeholder",
                         typeof(string),
-                        typeof(InputTextBox),
+                        typeof(DefaultTextBox),
                         new FrameworkPropertyMetadata(
                                 string.Empty,
                                 FrameworkPropertyMetadataOptions.AffectsMeasure |
@@ -48,7 +48,7 @@ namespace CryptoCloud.UserControls
                 DependencyProperty.Register(
                         "Text",
                         typeof(string),
-                        typeof(InputTextBox),
+                        typeof(DefaultTextBox),
                         new FrameworkPropertyMetadata(
                                 string.Empty,
                                 FrameworkPropertyMetadataOptions.AffectsMeasure |
@@ -86,7 +86,7 @@ namespace CryptoCloud.UserControls
             }
         }
 
-        public InputTextBox()
+        public DefaultTextBox()
         {
             InitializeComponent();
 
