@@ -13,6 +13,7 @@ using CryptoCloud.Infrastructure;
 using CryptoCloud.Models;
 using System.Collections;
 using CryptoCloud.ViewModels.MainWindowViewModels;
+using CryptoCloud.ViewModels.MainViewViewModels;
 
 namespace CryptoCloud.ViewModels
 {
@@ -109,7 +110,7 @@ namespace CryptoCloud.ViewModels
         #endregion
 
         public PopupsViewModel PopupsViewModel { get; set; }
-        public NavigationViewModel NavigationViewModel { get; set; }
+        public MainWindowContentViewModel ContentViewModel { get; set; }
 
         public MainWindowViewModel()
         {
@@ -120,10 +121,10 @@ namespace CryptoCloud.ViewModels
             Minimize = new RelayCommand(() => mainWindow.WindowState ^= WindowState.Minimized);
             Close = new RelayCommand(() => mainWindow.Close());
 
-            var navigator = DependencyContainer.Resolve<MainWindowNavigator>();
-
             PopupsViewModel = DependencyContainer.Resolve<PopupsViewModel>();
-            NavigationViewModel = DependencyContainer.Resolve<NavigationViewModel>();
+            ContentViewModel = DependencyContainer.Resolve<MainWindowContentViewModel>();
+
+            var navigator = DependencyContainer.Resolve<MainWindowNavigator>();
 
             navigator.NavigateToView<LoginViewModel>();
         }

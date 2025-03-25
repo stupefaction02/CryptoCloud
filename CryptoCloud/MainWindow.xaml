@@ -20,7 +20,7 @@
                          Width="{Binding ElementName=window, Path=ActualWidth}"
                          Height="{Binding ElementName=window, Path=ActualHeight}"
                          HorizontalAlignment="Center" VerticalAlignment="Center"
-                         DataContext="{Binding NavigationViewModel.Content}" 
+                         DataContext="{Binding ContentViewModel.CurrentContent}" 
                          Padding="16,16,16,0">
                 <UserControl.Style>
                     <Style TargetType="{x:Type UserControl}">

@@ -1,5 +1,6 @@
 ﻿using CryptoCloud.Infrastructure;
 using CryptoCloud.ViewModels;
+using CryptoCloud.ViewModels.MainViewViewModels;
 using CryptoCloud.ViewModels.MainWindowViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,22 @@ using System.Threading.Tasks;
 namespace CryptoCloud.Services
 {
     /// <summary>
-    /// To navigate between views in MainWindow area
+    /// View model which content may be changed.
     /// </summary>
-    public class MainWindowNavigator
+    public interface IHaveContentViewModel
     {
-        NavigationViewModel contentViewModel;
-        public NavigationViewModel MainWindowViewModel 
-        {
-            get
-            {
-                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<NavigationViewModel>();
-            }
-        }
+        public BaseViewModel CurrentContent { get; set; }
+    }
+
+    public class Navigator
+    {
+        public virtual IHaveContentViewModel? ViewModel { get; }
 
         public void NavigateToView<T>() where T : BaseViewModel
         {
             var currentView = loadViewDataContext<T>();
 
-            MainWindowViewModel.Content = currentView;
+            ViewModel.CurrentContent = currentView;
         }
 
         private Dictionary<string, BaseViewModel> viewModels = new Dictionary<string, BaseViewModel>();
@@ -50,41 +49,34 @@ namespace CryptoCloud.Services
         }
     }
 
-    public class MainViewNavigator
+    /// <summary>
+    /// To navigate between views in MainWindow area
+    /// </summary>
+    public class MainWindowNavigator : Navigator
     {
-        NavigationViewModel contentViewModel;
-        public NavigationViewModel MainWindowViewModel
+        MainWindowContentViewModel contentViewModel;
+        public MainWindowContentViewModel MainWindowViewModel
         {
             get
             {
-                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<NavigationViewModel>();
+                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<MainWindowContentViewModel>();
             }
         }
 
-        public void NavigateToView<T>() where T : BaseViewModel
+        public override IHaveContentViewModel ViewModel => MainWindowViewModel;
+    }
+
+    public class MainViewNavigator : Navigator
+    {
+        MainViewContentViewModel contentViewModel;
+        public MainViewContentViewModel MainWindowViewModel
         {
-            var currentView = loadViewDataContext<T>();
-
-            MainWindowViewModel.Content = currentView;
-        }
-
-        private Dictionary<string, BaseViewModel> viewModels = new Dictionary<string, BaseViewModel>();
-        private T? loadViewDataContext<T>() where T : BaseViewModel
-        {
-            // here we decide what view models we want to store and what we want to recreate every time navigation request was fired
-
-            string typeName = typeof(T).Name;
-
-            // create if none and store for future use
-            BaseViewModel vm = null;
-            if (!viewModels.TryGetValue(typeName, out vm))
+            get
             {
-                vm = DependencyContainer.Resolve<T>();
-                vm.NavigationId = typeName;
-                viewModels.Add(typeName, vm);
+                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<MainViewContentViewModel>();
             }
-
-            return vm as T;
         }
+
+        public override IHaveContentViewModel ViewModel => MainWindowViewModel;
     }
 }

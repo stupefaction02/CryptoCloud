@@ -1,5 +1,6 @@
 ﻿using CryptoCloud.Infrastructure;
 using CryptoCloud.Models;
+using CryptoCloud.ViewModels.MainViewViewModels;
 using CryptoCloud.Views;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CryptoCloud.ViewModels.MainView
     public class MainViewModel : BaseViewModel
     {
         public ViewNavigationModel ViewNavigationModel { get; set; }
+        public MainViewContentViewModel NavigationViewModel { get; set; }
 
         public MainViewModel()
         {
