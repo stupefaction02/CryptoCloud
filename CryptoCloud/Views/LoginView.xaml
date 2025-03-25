@@ -82,6 +82,9 @@
                                            MinWidth="50" 
                                            Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
                                            Margin="0,0,0,10" />
+
+                    <controls:InputError DataContext="{Binding EmailErrorViewModel}" Margin="0,0,0,10" />
+
                     <!--<TextBox Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />-->
                     <controls:InputTextBox Placeholder="Пароль" 
                                            Background="Transparent"
@@ -89,6 +92,8 @@
                                            MinWidth="50" 
                                            Margin="0,0,0,10" />
 
+                    <controls:InputError DataContext="{Binding PasswordErrorViewModel}" Margin="0,0,0,10" />
+                    
                     <TextBlock x:Name="forgetPasswordTb" 
                                Style="{StaticResource TextBlockLink}"
                                HorizontalAlignment="Left" 

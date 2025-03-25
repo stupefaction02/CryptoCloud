@@ -52,26 +52,31 @@ namespace CryptoCloud.ViewModels
             }
         }
 
-        public InputErrorModel EmailErrorModel { get; set; }
-        public InputErrorModel PasswordErrorModel { get; set; }
+        public InputErrorViewModel EmailErrorViewModel { get; set; }
+        public InputErrorViewModel PasswordErrorViewModel { get; set; }
 
         private void ShowUpError(List<ValidationFailure> errors)
         {
-            EmailErrorModel = new InputErrorModel
+            EmailErrorModel = new InputErrorViewModel
             {
                 // for custom error message
                 //Errors = errors.Select(x => ErrorCodeToMessage( x.ErrorCode )).ToList()
                 Errors = errors.Where(x => x.PropertyName == nameof(User.Email)).Select(x => x.ErrorMessage).ToList(),
-                Showing = true
+                IsShown = true
             };
 
-            PasswordErrorModel = new InputErrorModel
+            PasswordErrorModel = new InputErrorViewModel
             {
                 // for custom error message
                 //Errors = errors.Select(x => ErrorCodeToMessage( x.ErrorCode )).ToList()
                 Errors = errors.Where(x => x.PropertyName == nameof(User.Password)).Select(x => x.ErrorMessage).ToList(),
-                Showing = true
+                IsShown = true
             };
+
+            OnPropertyChanged(nameof(EmailErrorModel));
+            OnPropertyChanged(nameof(EmailErrorModel.IsShown));
+            OnPropertyChanged(nameof(PasswordErrorModel));
+            OnPropertyChanged(nameof(PasswordErrorModel.IsShown));
         }
 
         private Task<bool> ValidateLoginOnServerAsync(UserModel user)
