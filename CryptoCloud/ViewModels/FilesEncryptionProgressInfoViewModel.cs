@@ -21,7 +21,7 @@ namespace CryptoCloud.ViewModels
         public int ProgressValue { get; set; }
     }
 
-    public class FilesEncryptionProgressInfoViewModel : BaseViewModel
+    public class FilesEncryptionProgressInfoViewModel : ViewModel
     {
         public bool Minimised { get; set; }
 

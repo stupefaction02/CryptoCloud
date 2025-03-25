@@ -26,7 +26,7 @@ namespace CryptoCloud.ViewModels
         public DiskModel DiskModel { get; set; }
     }
 
-    public class MyDisksViewModel : BaseViewModel
+    public class MyDisksViewModel : ViewModel
     {
         public ICommand AddDiskCommand { get; set; }
 

@@ -21,7 +21,7 @@ namespace CryptoCloud.ViewModels
         public bool IsSelected { get; set; }
     }
 
-    public class SideMenuViewModel : BaseViewModel
+    public class SideMenuViewModel : ViewModel
     {
         public ObservableCollection<SideMenuItemModel> MenuItems { get; set; }
 

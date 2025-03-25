@@ -7,7 +7,7 @@ namespace CryptoCloud.Models
     {
         private string dataContextKey = "_default";
 
-        public BaseViewModel DataContext { get; set; }
+        public ViewModel DataContext { get; set; }
 
         public string ViewKey
         {

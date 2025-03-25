@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptoCloud.ViewModels
 {
-    public class InputErrorViewModel : BaseViewModel
+    public class InputErrorViewModel : ViewModel
     {
         public List<string> Errors { get; set; }
 

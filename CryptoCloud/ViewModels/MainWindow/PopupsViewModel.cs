@@ -1,11 +1,11 @@
-﻿using CryptoCloud.ViewModels.Popup;
+﻿using CryptoCloud.ViewModels.MainWindowViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CryptoCloud.ViewModels.Popup
+namespace CryptoCloud.ViewModels.MainWindowViewModels
 {
     public class FilePopupViewModel
     {

@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : ViewModel
     {
         private readonly MainWindowNavigator mainWindowNavigator;
         private readonly UserModelValidator validator;
@@ -42,7 +42,7 @@ namespace CryptoCloud.ViewModels
             var clientValidation = validator.Validate(User);
 
             bool serverValidationIsOk = await ValidateLoginOnServerAsync(User);
-              
+
             if (serverValidationIsOk && clientValidation.IsValid)
             {
                 logger.LogInformation($"User validation success.");
@@ -51,7 +51,7 @@ namespace CryptoCloud.ViewModels
             }
             else
             {
-                var errors = String.Join('\n', clientValidation.Errors.Select(x => x.ErrorMessage));
+                var errors = string.Join('\n', clientValidation.Errors.Select(x => x.ErrorMessage));
                 logger.LogWarning($"User validation failure. Error: {errors}");
 
                 ShowUpError(clientValidation.Errors);

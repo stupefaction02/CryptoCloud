@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class DiskFilesViewModel : BaseViewModel
+    public class DiskFilesViewModel : ViewModel
     {
         private readonly IPopupService popupService;
 

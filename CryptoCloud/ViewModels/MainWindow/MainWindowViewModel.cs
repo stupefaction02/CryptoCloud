@@ -15,9 +15,9 @@ using System.Collections;
 using CryptoCloud.ViewModels.MainWindowViewModels;
 using CryptoCloud.ViewModels.MainViewViewModels;
 
-namespace CryptoCloud.ViewModels
+namespace CryptoCloud.ViewModels.MainWindowViewModels
 {
-    public class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : ViewModel
     {
         #region Window Chrome
 
@@ -105,7 +105,7 @@ namespace CryptoCloud.ViewModels
             set { hideInfoBar = value; OnPropertyChanged(nameof(HideInfoBar)); }
         }
 
-        public BaseViewModel CurrentView { get; set; }
+        public ViewModel CurrentView { get; set; }
 
         #endregion
 
@@ -114,9 +114,9 @@ namespace CryptoCloud.ViewModels
 
         public MainWindowViewModel()
         {
-            this.mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow = Application.Current.MainWindow as MainWindow;
 
-            this.mainWindow.StateChanged += MainWindowStateChanged;
+            mainWindow.StateChanged += MainWindowStateChanged;
 
             Minimize = new RelayCommand(() => mainWindow.WindowState ^= WindowState.Minimized);
             Close = new RelayCommand(() => mainWindow.Close());

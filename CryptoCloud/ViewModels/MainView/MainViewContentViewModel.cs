@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CryptoCloud.ViewModels.MainViewViewModels
 {
-    public class MainViewContentViewModel : BaseViewModel, IHaveContentViewModel
+    public class MainViewContentViewModel : ViewModel, IHaveContentViewModel
     {
-        private BaseViewModel content;
+        private ViewModel content;
 
-        public BaseViewModel CurrentContent
+        public ViewModel CurrentContent
         {
             get => content; 
             set

@@ -1,6 +1,8 @@
 ﻿using CryptoCloud.Infrastructure;
 using CryptoCloud.Models;
+using CryptoCloud.Services;
 using CryptoCloud.ViewModels.MainViewViewModels;
+using CryptoCloud.ViewModels.MainWindowViewModels;
 using CryptoCloud.Views;
 using System;
 using System.Collections.Generic;
@@ -10,14 +12,19 @@ using System.Threading.Tasks;
 
 namespace CryptoCloud.ViewModels.MainView
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModel
     {
-        public ViewNavigationModel ViewNavigationModel { get; set; }
-        public MainViewContentViewModel NavigationViewModel { get; set; }
+        private readonly MainViewNavigator navigator;
 
-        public MainViewModel()
+        public MainViewContentViewModel ContentViewModel { get; set; }
+
+        public MainViewModel(MainViewNavigator navigator)
         {
-            ViewNavigationModel = new ViewNavigationModel { DataContext = DependencyContainer.Resolve<DiskFilesViewModel>(), ViewKey = "DiskFiles" };
+            ContentViewModel = DependencyContainer.Resolve<MainViewContentViewModel>();
+
+            this.navigator = navigator;
+
+            navigator.NavigateToView<MyDisksViewModel>();
         }
     }
 }

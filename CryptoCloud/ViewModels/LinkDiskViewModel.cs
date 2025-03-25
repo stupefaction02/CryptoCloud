@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class LinkDiskViewModel : BaseViewModel
+    public class LinkDiskViewModel : ViewModel
     {
         private readonly Navigator navigator;
 

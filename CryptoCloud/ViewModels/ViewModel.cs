@@ -8,7 +8,7 @@ namespace CryptoCloud.ViewModels
 	/// <summary>
 	/// Description of BaseViewModel.
 	/// </summary>
-	public class BaseViewModel : INotifyPropertyChanged
+	public class ViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void OnPropertyChanged(string prop = "")
