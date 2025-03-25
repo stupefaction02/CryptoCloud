@@ -8,13 +8,16 @@
         xmlns:local="clr-namespace:CryptoCloud"
         mc:Ignorable="d"
         x:Name="window"
-        Background="#16171D"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
         Title="CryptoCloud" Height="650" Width="1640">
     <Grid>
         <Canvas>
-            <UserControl x:Name="viewSwitch" DataContext="{Binding ViewNavigationModel}" 
-                        Padding="16,16,16,0">
+            <UserControl x:Name="viewSwitch" 
+                         Background="#16171D"
+                         Width="{Binding ElementName=window, Path=ActualWidth}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                         DataContext="{Binding ViewNavigationModel}" 
+                         Padding="16,16,16,0">
                 <UserControl.Style>
                     <Style TargetType="{x:Type UserControl}">
                         <Style.Triggers>
@@ -29,7 +32,7 @@
                             <DataTrigger Binding="{Binding ViewKey}" Value="Login">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <views:LoginView DataContext="{Binding DataContext}" />
+                                        <views:LoginView Width="780" Height="650" DataContext="{Binding DataContext}" />
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
@@ -48,6 +51,7 @@
 
             <diskFilesViews:FilePopup x:Name="fileInfoPopup" 
                           Height="80" 
+                                      Visibility="Collapsed"
                           Width="{Binding ElementName=window, Path=ActualWidth}"
                           Canvas.Top="0" 
                           Canvas.Left="0" />

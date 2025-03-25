@@ -161,7 +161,7 @@ namespace CryptoCloud.ViewModels
             navigation.OnPageChanged += page => CurrentPage = page;
             //navigation.Navigate(new Pages.LoginPage());
 
-            ViewNavigationModel = new ViewNavigationModel() { DataContext = new MainViewModel(), ViewKey = "Main" };
+            ViewNavigationModel = new ViewNavigationModel() { DataContext = new LoginViewModel(), ViewKey = "Login" };
         }
 
         private void MainWindowStateChanged(object sender, EventArgs e)

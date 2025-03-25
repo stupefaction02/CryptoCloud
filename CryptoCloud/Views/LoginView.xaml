@@ -5,110 +5,150 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:converters="clr-namespace:CryptoCloud.Converters"
+      xmlns:controls="clr-namespace:CryptoCloud.UserControls"
       xmlns:attachedProperties="clr-namespace:CryptoCloud.AttachedProperties"
       xmlns:local="clr-namespace:CryptoCloud.Views"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource viewModelLocator}, Path=LoginViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="780">
-    <Grid Background="#222329">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Border CornerRadius="20"
+            Background="#1B1C21"
+            BorderThickness="1"
+            BorderBrush="#222329">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Left" 
-                       Width="243" 
-                       Margin="0,0,0,20" 
-                       Style="{StaticResource TextBlocks.H1}">
-                Выполните вход
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="0,0,0,20" Width="226" Foreground="#707383" Height="20">Добро пожаловать в КриптКлауд</TextBlock>
+            <Border Padding="49">
+                <StackPanel x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Left" 
+                               TextAlignment="Justify"
+                           Width="243" 
+                           MinWidth="243" 
+                               LineStackingStrategy="BlockLineHeight"
+                           Margin="0,0,0,20" 
+                               LineHeight="50"
+                           FontWeight="Regular"
+                           Foreground="White"
+                           TextWrapping="Wrap"
+                           FontSize="{StaticResource FontSizeXXXLarge}"
+                           FontFamily="{StaticResource JetbrainsMonoRegular}">
+                    Выполните вход
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" 
+                               FontFamily="{StaticResource SfProTextRegular}"
+                               FontSize="{StaticResource FontSizeRegular}"
+                               Margin="0,0,0,34" 
+                               FontWeight="Medium"
+                               Foreground="#707383"
+                               LineHeight="20"
+                               Height="20">
+                    Добро пожаловать в КриптКлауд
+                    </TextBlock>
 
-            <Border x:Name="loginButtons" Margin="0,0,0,5" Padding="5" Width="290" Background="#16171D" CornerRadius="30" Height="50">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="10"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Content="Вход" Grid.Column="0" FontWeight="Bold" Style="{StaticResource RoundedButton}"/>
-                    <Button Content="Регистрация" FontWeight="Bold" Grid.Column="2" Style="{StaticResource RoundedButton}"/>
-                </Grid>
+                    <Border x:Name="loginButtons"
+                            Margin="0,0,0,10" 
+                            Padding="5" 
+                            Width="290" 
+                            Background="#16171D" 
+                            CornerRadius="30" 
+                            Height="50">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Вход" 
+                                    Grid.Column="0" 
+                                    FontWeight="Bold" 
+                                    FontFamily="{StaticResource InterRegular}"
+                                    Style="{StaticResource RoundedButton}"/>
+                            <Button Content="Регистрация" 
+                                    FontWeight="Bold" 
+                                    FontFamily="{StaticResource InterRegular}"
+                                    Background="Transparent"
+                                    Grid.Column="2" 
+                                    Style="{StaticResource RoundedButton}"/>
+                        </Grid>
+                    </Border>
+
+                    <controls:InputTextBox Height="50" MinWidth="50" Margin="0,0,0,10" />
+                    <controls:InputTextBox Height="50" MinWidth="50" Margin="0,0,0,10" />
+
+                    <TextBlock x:Name="forgetPasswordTb" 
+                               Style="{StaticResource TextBlockLink}"
+                               HorizontalAlignment="Left" 
+                               Margin="0,0,0,20" 
+                               Width="100" 
+                               Height="18">
+                        Забыли пароль?
+                    </TextBlock>
+
+                    <Button x:Name="loginBtn"
+                            Content="Войти" 
+                            Height="50" 
+                            Margin="0,0,0,10"
+                            Command="{Binding LoginButtonCommand}"
+                            Style="{StaticResource BlueGradientButton}"/>
+                    <Button Content="Войти с помощью Google" 
+                            Margin="0,0,0,10"
+                            Height="50" 
+                            Style="{StaticResource LoginWithGoogleButton}"/>
+
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <Image 
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,10,0"
+                            Source="pack://application:,,,/Images/key-fill.png"/>
+
+                        <TextBlock 
+                              Focusable="False"
+                              FontWeight="Medium"
+                              Foreground="White"
+                              LineHeight="18"
+                              FontSize="{StaticResource FontSizeSmall}">
+                        <Run>Войти с помощью</Run>
+                        <Run Style="{StaticResource RunLink}">ключа шифрования</Run>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
             </Border>
 
-            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}"  />
-            <TextBox Margin="0,0,0,10" Style="{StaticResource DefaultTextBox}"  />
+            <Canvas x:Name="loginRightSide" Grid.Column="1" Width="Auto" Height="Auto">
+                <Canvas.Background>
+                    <ImageBrush Stretch="Fill" 
+                                ImageSource="pack://application:,,,/Images/loginBG.png">
 
-            <TextBlock x:Name="forgetPasswordTb" 
-                       Style="{StaticResource TextBlockLink}"
-                       HorizontalAlignment="Left" 
-                       Margin="0,0,0,20" 
-                       Width="100" 
-                       Height="18">
-                Забыли пароль?
-            </TextBlock>
+                    </ImageBrush>
+                </Canvas.Background>
 
-            <Button x:Name="loginBtn"
-                    Content="Войти" 
-                    Height="50" 
-                    Margin="0,0,0,10"
-                    Command="{Binding LoginButtonCommand}"
-                    Style="{StaticResource BlueGradientButton}"/>
-            <Button Content="Войти с помощью Google" 
-                    Margin="0,0,0,10"
-                    Height="50" 
-                    Style="{StaticResource LoginWithGoogleButton}"/>
-
-            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                <Image 
-                    Width="20"
-                    Height="20"
-                    Margin="0,0,10,0"
-                    Source="pack://application:,,,/Images/key-fill.png"/>
-
+                <!-- JetBrains Mono -->
                 <TextBlock 
-                      Focusable="False"
-                      FontWeight="Medium"
-                      Foreground="White"
-                      LineHeight="18"
-                      FontSize="{StaticResource FontSizeSmall}">
-                    <Run>Войти с помощью</Run>
-                    <Run Style="{StaticResource RunLink}">ключа шифрования</Run>
+                    Canvas.Left="25"
+                    Canvas.Bottom="10"
+                       HorizontalAlignment="Left" 
+                       Width="297" 
+                       Margin="0,0,0,20"
+                    FontWeight="Normal"
+                    Foreground="White"
+                    TextWrapping="Wrap"
+                    FontSize="{StaticResource FontSizeXXLarge}">
+                    Пользуйтесь облачными данными безопасно
                 </TextBlock>
-            </StackPanel>
-        </StackPanel>
 
-        <Canvas x:Name="loginRightSide" Grid.Column="1" Width="Auto" Height="Auto">
-            <Canvas.Background>
-                <ImageBrush Stretch="Fill" 
-                            ImageSource="pack://application:,,,/Images/loginBG.png">
-                    
-                </ImageBrush>
-            </Canvas.Background>
-            
-            <!-- JetBrains Mono -->
-            <TextBlock 
-                Canvas.Left="25"
-                Canvas.Bottom="10"
-                   HorizontalAlignment="Left" 
-                   Width="297" 
-                   Margin="0,0,0,20"
-                FontWeight="Normal"
-                Foreground="White"
-                TextWrapping="Wrap"
-                FontSize="{StaticResource FontSizeXXLarge}">
-                Пользуйтесь облачными данными безопасно
-            </TextBlock>
-
-            <Image 
-                Canvas.Top="25"
-                Canvas.Right="23"
-                Width="50"
-                Height="53.03"
-                Source="pack://application:,,,/Images/Login_Page_TopRight_Icon.png"
-            />
-        </Canvas>
-    </Grid>
+                <Image 
+                    Canvas.Top="25"
+                    Canvas.Right="23"
+                    Width="50"
+                    Height="53.03"
+                    Source="pack://application:,,,/Images/Login_Page_TopRight_Icon.png"
+                />
+            </Canvas>
+        </Grid>
+    </Border>
 </UserControl>

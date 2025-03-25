@@ -4,16 +4,9 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!-- Workable -->
-    <FontFamily x:Key="PrototypeRegular">pack://application,,,/Fonts/#Prototype</FontFamily>
-    <FontFamily x:Key="ContourGeneratorRegular">pack://application,,,/Fonts/#Contour Generator</FontFamily>
-
-
-    <!--<Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource LucidaConsoleRegular}"/>
-    </Style>
-
-    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"/>
-    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}"/>-->
+    <FontFamily x:Key="JetbrainsMonoRegular">pack://application,,,/Fonts/#JetBrains Mono</FontFamily>
+    <FontFamily x:Key="SfProTextRegular">pack://application,,,/Fonts/#Sf Pro Text</FontFamily>
+    <FontFamily x:Key="InterRegular">pack://application,,,/Fonts/#Inter 18pt</FontFamily>
 
     <!-- Sizes -->
     <system:Double x:Key="FontSizeSmaller">10</system:Double>
