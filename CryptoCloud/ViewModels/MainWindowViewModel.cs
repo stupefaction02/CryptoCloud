@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using CryptoCloud.Services;
 using CryptoCloud.Views;
 using CommunityToolkit.Mvvm.Input;
+using CryptoCloud.Infrastructure;
 
 namespace CryptoCloud.ViewModels
 {
@@ -161,7 +162,7 @@ namespace CryptoCloud.ViewModels
             navigation.OnPageChanged += page => CurrentPage = page;
             //navigation.Navigate(new Pages.LoginPage());
 
-            ViewNavigationModel = new ViewNavigationModel() { DataContext = new LoginViewModel(), ViewKey = "Login" };
+            ViewNavigationModel = new ViewNavigationModel() { DataContext = DependencyContainer.Resolve<LoginViewModel>(), ViewKey = "Login" };
         }
 
         private void MainWindowStateChanged(object sender, EventArgs e)

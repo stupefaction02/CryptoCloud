@@ -1,4 +1,5 @@
 ﻿using CryptoCloud.Services;
+using CryptoCloud.Validators;
 using CryptoCloud.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,6 +27,9 @@ namespace CryptoCloud.Infrastructure
             services.AddSingleton<DiskFilesViewModel>();
             services.AddSingleton<FilesEncryptionProgressInfoViewModel>();
             services.AddSingleton<IPopupService, PopupService>();
+
+            services.AddSingleton<IPopupService, PopupService>();
+            services.AddSingleton<UserModelValidator>();
 
             serviceProvider = services.BuildServiceProvider();
         }

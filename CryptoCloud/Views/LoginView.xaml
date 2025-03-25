@@ -76,8 +76,16 @@
                         </Grid>
                     </Border>
 
-                    <controls:InputTextBox Height="50" MinWidth="50" Margin="0,0,0,10" />
-                    <controls:InputTextBox Height="50" MinWidth="50" Margin="0,0,0,10" />
+                    <controls:InputTextBox Placeholder="Твоя почта" 
+                                           Height="50" 
+                                           MinWidth="50" 
+                                           Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                                           Margin="0,0,0,10" />
+                    <!--<TextBox Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />-->
+                    <controls:InputTextBox Placeholder="Пароль" 
+                                           Height="50" 
+                                           MinWidth="50" 
+                                           Margin="0,0,0,10" />
 
                     <TextBlock x:Name="forgetPasswordTb" 
                                Style="{StaticResource TextBlockLink}"
