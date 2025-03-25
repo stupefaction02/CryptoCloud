@@ -14,7 +14,7 @@
         <ControlTemplate x:Key="TextBoxTemplate1" TargetType="{x:Type TextBox}">
             <Border x:Name="border"
                     CornerRadius="25"
-                    Padding="18,7,10,4"
+                    Padding="18,10,10,4"
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
                     BorderThickness="{TemplateBinding BorderThickness}" 
@@ -30,9 +30,7 @@
                                Foreground="#707383"
                                FontFamily="{TemplateBinding FontFamily}"
                                FontStretch="{TemplateBinding FontStretch}"
-                               FontSize="{TemplateBinding FontSize}">
-                        Поиск
-                    </TextBlock>
+                               FontSize="{TemplateBinding FontSize}"/>
                     <ScrollViewer x:Name="PART_ContentHost" 
                                   Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}, Path=ActualWidth}"
                                   Focusable="false" 
@@ -75,10 +73,12 @@
     </UserControl.Resources>
     <TextBox x:Name="textBox"
              Template="{DynamicResource TextBoxTemplate1}"
-             Background="#222329" 
+             Background="Transparent" 
              Foreground="White"
              FontWeight="Regular"
              BorderBrush="#45454A"
+             CaretBrush="White"
+             FontFamily="{StaticResource InterRegular}"
              BorderThickness="1"
              FontSize="{StaticResource FontSizeRegular}"
              Width="Auto" Height="Auto">

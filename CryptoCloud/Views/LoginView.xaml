@@ -41,7 +41,7 @@
                     <TextBlock HorizontalAlignment="Left" 
                                FontFamily="{StaticResource SfProTextRegular}"
                                FontSize="{StaticResource FontSizeRegular}"
-                               Margin="0,0,0,34" 
+                               Margin="0,0,0,30" 
                                FontWeight="Medium"
                                Foreground="#707383"
                                LineHeight="20"
@@ -77,12 +77,14 @@
                     </Border>
 
                     <controls:InputTextBox Placeholder="Твоя почта" 
+                                           Background="Transparent"
                                            Height="50" 
                                            MinWidth="50" 
                                            Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
                                            Margin="0,0,0,10" />
                     <!--<TextBox Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />-->
                     <controls:InputTextBox Placeholder="Пароль" 
+                                           Background="Transparent"
                                            Height="50" 
                                            MinWidth="50" 
                                            Margin="0,0,0,10" />
@@ -90,7 +92,7 @@
                     <TextBlock x:Name="forgetPasswordTb" 
                                Style="{StaticResource TextBlockLink}"
                                HorizontalAlignment="Left" 
-                               Margin="0,0,0,20" 
+                               Margin="0,0,0,28" 
                                Width="100" 
                                Height="18">
                         Забыли пароль?
@@ -105,6 +107,7 @@
                     <Button Content="Войти с помощью Google" 
                             Margin="0,0,0,10"
                             Height="50" 
+                            Background="Transparent"
                             Style="{StaticResource LoginWithGoogleButton}"/>
 
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -115,6 +118,7 @@
                             Source="pack://application:,,,/Images/key-fill.png"/>
 
                         <TextBlock 
+                              FontFamily="{StaticResource SfProTextRegular}"
                               Focusable="False"
                               FontWeight="Medium"
                               Foreground="White"
@@ -137,6 +141,7 @@
 
                 <!-- JetBrains Mono -->
                 <TextBlock 
+                    FontFamily="{StaticResource JetbrainsMonoRegular}"
                     Canvas.Left="25"
                     Canvas.Bottom="10"
                        HorizontalAlignment="Left" 

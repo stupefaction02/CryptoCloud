@@ -13,6 +13,7 @@
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource TextBlockLinkBrush}" />
         <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+        <Setter Property="FontFamily" Value="{StaticResource InterRegular}"/>
     </Style>
 
     <Style x:Key="RunLink" TargetType="{x:Type Run}">
