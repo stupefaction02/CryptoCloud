@@ -22,8 +22,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Border Padding="49">
-                <StackPanel x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
+            <Border Padding="49,49,49,0">
+                <StackPanel MaxHeight="599" x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
                     <TextBlock HorizontalAlignment="Left" 
                                TextAlignment="Justify"
                            Width="243" 
@@ -94,52 +94,62 @@
                                            Margin="0,0,0,10" />
 
                     <controls:InputError DataContext="{Binding PasswordErrorViewModel}" Margin="0,0,0,10" />
-                    
-                    <TextBlock x:Name="forgetPasswordTb" 
+
+                    <Grid Height="210" MaxHeight="210" MinHeight="180" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" MinHeight="4" MaxHeight="28" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" MaxHeight="10" MinHeight="4" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" MaxHeight="30" MinHeight="4" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock x:Name="forgetPasswordTb" Grid.Row="0"
                                Style="{StaticResource TextBlockLink}"
                                HorizontalAlignment="Left" 
-                               Margin="0,0,0,28" 
                                Width="100" 
                                Height="18">
                         Забыли пароль?
-                    </TextBlock>
+                        </TextBlock>
 
-                    <Button x:Name="loginBtn"
+                        <Button x:Name="loginBtn" Grid.Row="2"
                             Content="Войти" 
                             Height="50" 
-                            Margin="0,0,0,10"
                             Command="{Binding LoginButtonCommand}"
                             Style="{StaticResource BlueGradientButton}"/>
-                    <Button Content="Войти с помощью Google" 
-                            Margin="0,0,0,30"
+                        <Button Content="Войти с помощью Google" Grid.Row="4"
                             Height="50" 
                             Background="Transparent"
                             Style="{StaticResource LoginWithGoogleButton}"/>
 
-                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                        <Image 
-                            Width="20" 
-                            Height="20"
-                            Margin="0,0,10,0"
-                            Source="pack://application:,,,/Images/key-fill.png"/>
+                        <StackPanel Grid.Row="6" VerticalAlignment="Center" Orientation="Horizontal">
+                            <Image 
+                                Width="20" 
+                                Height="20"
+                                Margin="0,0,10,0"
+                                Source="pack://application:,,,/Images/key-fill.png"/>
 
-                        <TextBlock 
-                              FontFamily="{StaticResource SfProTextRegular}"
-                              Focusable="False"
-                              FontWeight="Medium"
-                              Foreground="White"
-                              LineHeight="18"
-                              FontSize="{StaticResource FontSizeSmall}">
-                        <Run>Войти с помощью</Run>
-                        <Run Style="{StaticResource RunLink}">ключа шифрования</Run>
-                        </TextBlock>
-                    </StackPanel>
+                            <TextBlock 
+                                  FontFamily="{StaticResource SfProTextRegular}"
+                                  Focusable="False"
+                                  FontWeight="Medium"
+                                  Foreground="White"
+                                  LineHeight="18"
+                                  Margin="0,4,0,0"
+                                  FontSize="{StaticResource FontSizeSmall}">
+                            <Run>Войти с помощью</Run>
+                            <Run Style="{StaticResource RunLink}">ключа шифрования</Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Border>
 
             <Grid Grid.Column="1">
 
-                <Border Name="mask" Background="White" CornerRadius="0,25,25,0"/>
+                <Border Name="mask" Background="White" CornerRadius="0,20,20,0"/>
 
                 <StackPanel>
 

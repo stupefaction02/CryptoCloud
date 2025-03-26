@@ -65,17 +65,13 @@ namespace CryptoCloud.ViewModels
         {
             EmailErrorViewModel = new InputErrorViewModel
             {
-                // for custom error message
-                //Errors = errors.Select(x => ErrorCodeToMessage( x.ErrorCode )).ToList()
-                Errors = errors.Where(x => x.PropertyName == nameof(User.Email)).Select(x => x.ErrorMessage).ToList(),
+                Errors = errors.Where(x => x.PropertyName == nameof(User.Email)).Select(x => x.ErrorMessage).Take(1).ToList(),
                 IsShown = true
             };
 
             PasswordErrorViewModel = new InputErrorViewModel
             {
-                // for custom error message
-                //Errors = errors.Select(x => ErrorCodeToMessage( x.ErrorCode )).ToList()
-                Errors = errors.Where(x => x.PropertyName == nameof(User.Password)).Select(x => x.ErrorMessage).ToList(),
+                Errors = errors.Where(x => x.PropertyName == nameof(User.Password)).Select(x => x.ErrorMessage).Take(1).ToList(),
                 IsShown = true
             };
 

@@ -5,40 +5,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="179">
-    <Grid>
-        <Canvas>
-            <StackPanel Orientation="Horizontal" Canvas.Top="0" Canvas.Right="20" Width="19" Height="5">
-                <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,2,0" />
-                <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,2,0" />
-                <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,0,0" />
-            </StackPanel>
-        </Canvas>
+             d:DesignHeight="180" d:DesignWidth="160">
+    <Border Padding="0,10,0,10" CornerRadius="20">
 
-        <StackPanel>
-            <Image x:Name="folderImage"
-                Width="100"
-                Height="100"
-                Margin="0,0,0,8"
-                Source="pack://application:,,,/Images/FolderFill.png"/>
+        <Border.Style>
+            <Style TargetType="{x:Type Border}">
+                <Style.Setters>
+                    <Setter Property="Background" Value="Transparent" />
+                </Style.Setters>
 
-            <StackPanel Orientation="Horizontal" 
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#222329" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        
+        <Grid>
+            <Canvas>
+                <StackPanel Orientation="Horizontal" Canvas.Top="3" Canvas.Right="12" Width="19" Height="5">
+                    <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,2,0" />
+                    <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,2,0" />
+                    <Ellipse Width="5" Fill="White" Height="5" Margin="0,0,0,0" />
+                </StackPanel>
+            </Canvas>
+
+            <StackPanel>
+                <Image x:Name="folderImage"
+                    Width="100"
+                    Height="100"
+                    Margin="0,0,0,8"
+                    Source="pack://application:,,,/Images/FolderFill.png"/>
+
+                <StackPanel Orientation="Horizontal" 
                         HorizontalAlignment="Center"
                         Margin="0,0,0,5"
                         Width="100"
                         VerticalAlignment="Center">
-                <Border 
-                    Width="20"
-                    Height="20"
-                    CornerRadius="10"
-                    Margin="0,0,16,0"
-                    Background="#9747FF">
-                    <Image 
-                        Width="8.009765625" 
-                        Height="10.447819709777832"
-                        Source="pack://application:,,,/Images/AvatarPlaceholder.png"/>
-                </Border>
-                <TextBlock Text="{Binding Name, FallbackValue=Папка 1}" 
+                    <Border 
+                        Width="20"
+                        Height="20"
+                        CornerRadius="10"
+                        Margin="0,0,16,0"
+                        Background="#9747FF">
+                        <Image 
+                            Width="8.009765625" 
+                            Height="10.447819709777832"
+                            Source="pack://application:,,,/Images/AvatarPlaceholder.png"/>
+                    </Border>
+                    <TextBlock Text="{Binding Name, FallbackValue=Папка 1}" 
                            VerticalAlignment="Center"
                            Foreground="#FFFFFF"
                            FontWeight="Bold" 
@@ -46,14 +62,15 @@
                            FontFamily="{StaticResource SfProTextRegular}"
                            LineHeight="24"
                            FontSize="{StaticResource FontSizeLargerRegular}" />
+                </StackPanel>
+                <TextBlock Text="{Binding ModificationDate, FallbackValue=24.03.2025 13:32}" 
+                           HorizontalAlignment="Center"
+                           Foreground="#707383"
+                           FontWeight="Bold" 
+                           FontFamily="{StaticResource SfProTextRegular}"
+                           LineHeight="20"
+                           FontSize="{StaticResource FontSizeRegular}" />
             </StackPanel>
-            <TextBlock Text="{Binding ModificationDate, FallbackValue=24.03.2025 13:32}" 
-                       HorizontalAlignment="Center"
-                       Foreground="#707383"
-                       FontWeight="Bold" 
-                       FontFamily="{StaticResource SfProTextRegular}"
-                       LineHeight="20"
-                       FontSize="{StaticResource FontSizeRegular}" />
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </Border>
 </UserControl>
