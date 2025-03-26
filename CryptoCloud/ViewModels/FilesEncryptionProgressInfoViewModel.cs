@@ -23,15 +23,15 @@ namespace CryptoCloud.ViewModels
 
     public class FilesEncryptionProgressInfoViewModel : ViewModel
     {
-        public bool Minimised { get; set; }
+        public bool Collapsed { get; set; }
 
-        public ICommand ToggleCommand { get; set; }
+        public ICommand ToggleCollapsedCommand { get; set; }
 
         public ObservableCollection<FileEncryptionTaskModel> FileEncryptionTasks { get; set; }
 
         public FilesEncryptionProgressInfoViewModel()
         {
-            ToggleCommand = new RelayCommand(ToggleCommandHandler);
+            ToggleCollapsedCommand = new RelayCommand(ToggleCommandHandler);
 
             FileEncryptionTasks = new ObservableCollection<FileEncryptionTaskModel>
             {
@@ -43,9 +43,9 @@ namespace CryptoCloud.ViewModels
 
         private void ToggleCommandHandler()
         {
-            Minimised = !Minimised;
+            Collapsed = !Collapsed;
 
-            OnPropertyChanged(nameof(Minimised));
+            OnPropertyChanged(nameof(Collapsed));
         }
     }
 }

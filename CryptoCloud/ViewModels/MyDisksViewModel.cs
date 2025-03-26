@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CryptoCloud.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -42,8 +43,9 @@ namespace CryptoCloud.ViewModels
         public ObservableCollection<DiskItemModel> Disks { get; set; }
 
         ILogger logger;
+        private readonly SideBarNavigator sideBarNavigator;
 
-        public MyDisksViewModel(ILoggerFactory loggerFactory)
+        public MyDisksViewModel(ILoggerFactory loggerFactory, SideBarNavigator sideBarNavigator)
         {
             logger = loggerFactory.CreateLogger<MyDisksViewModel>();
 
@@ -59,6 +61,7 @@ namespace CryptoCloud.ViewModels
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "vasily.zadov1957@mail.ru", Size = "15 МБ", Type = "Disk" } },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "Anon", Size = "1512 ТБ", Type = "Disk" } },
             };
+            this.sideBarNavigator = sideBarNavigator;
         }
 
         private void DiskClickedCommandHandler(object? obj)
@@ -70,6 +73,8 @@ namespace CryptoCloud.ViewModels
                 DiskModel model = clickedDisk.DiskModel;
 
                 logger.LogInformation($"Disk item click. DiskModel = {{ owner = {model.Owner} }}");
+
+                sideBarNavigator.NavigateToItem("files");
             }
         }
     }

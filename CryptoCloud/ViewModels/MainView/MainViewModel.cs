@@ -14,17 +14,13 @@ namespace CryptoCloud.ViewModels.MainView
 {
     public class MainViewModel : ViewModel
     {
-        private readonly SideBarNavigator navigator;
-
         public MainViewContentViewModel ContentViewModel { get; set; }
 
-        public MainViewModel(SideBarNavigator navigator)
+        public MainViewModel(SideBarNavigator sideBarNavigator)
         {
             ContentViewModel = DependencyContainer.Resolve<MainViewContentViewModel>();
 
-            this.navigator = navigator;
-
-            navigator.NavigateToView<DiskFilesViewModel>();
+            sideBarNavigator.NavigateToItem("myDisks");
         }
     }
 }

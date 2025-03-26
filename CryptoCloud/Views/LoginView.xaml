@@ -11,7 +11,7 @@
       Background="Transparent"
       DataContext="{Binding Source={StaticResource viewModelLocator}, Path=LoginViewModel}"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="780">
+      d:DesignHeight="690" d:DesignWidth="780">
     <Border CornerRadius="20"
             Background="#1B1C21"
             BorderThickness="1"
@@ -23,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Padding="49,49,49,0">
-                <StackPanel MaxHeight="599" x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
+                <StackPanel x:Name="loginLeftSide" Grid.Column="0" HorizontalAlignment="Center">
                     <TextBlock HorizontalAlignment="Left" 
                                TextAlignment="Justify"
                            Width="243" 
@@ -81,9 +81,9 @@
                                            Height="50" 
                                            MinWidth="50" 
                                            Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
-                                           Margin="0,0,0,10" />
+                                           Margin="0,0,0,5" />
 
-                    <controls:InputError DataContext="{Binding EmailErrorViewModel}" Margin="0,0,0,10" />
+                    <controls:InputError DataContext="{Binding EmailErrorViewModel}" Margin="0,0,0,5" />
 
                     <!--<TextBox Text="{Binding Path=User.Email, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" />-->
                     <controls:DefaultPasswordBox Placeholder="Пароль" 
@@ -91,9 +91,9 @@
                                            Height="50" 
                                            MinWidth="50" 
                                            Text="{Binding Path=User.Password, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
-                                           Margin="0,0,0,10" />
+                                           Margin="0,0,0,5" />
 
-                    <controls:InputError DataContext="{Binding PasswordErrorViewModel}" Margin="0,0,0,10" />
+                    <controls:InputError DataContext="{Binding PasswordErrorViewModel}" Margin="0,0,0,5" />
 
                     <Grid Height="210" MaxHeight="210" MinHeight="180" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
@@ -102,7 +102,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" MaxHeight="10" MinHeight="4" />
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" MaxHeight="30" MinHeight="4" />
+                            <RowDefinition Height="*" MaxHeight="15" MinHeight="4" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         
@@ -133,6 +133,7 @@
 
                             <TextBlock 
                                   FontFamily="{StaticResource SfProTextRegular}"
+                                HorizontalAlignment="Center"
                                   Focusable="False"
                                   FontWeight="Medium"
                                   Foreground="White"

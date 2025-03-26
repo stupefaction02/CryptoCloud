@@ -1,49 +1,42 @@
-﻿using CryptoCloud.Infrastructure;
-using CryptoCloud.ViewModels;
-using CryptoCloud.ViewModels.MainViewViewModels;
-using Microsoft.Extensions.Logging;
-using System.Security.Policy;
+﻿using CryptoCloud.ViewModels;
 
 namespace CryptoCloud.Services
 {
-    /// <summary>
-    /// Navigates to sidebar views associated with sidebar
-    /// </summary>
-    public class SideBarNavigator : Navigator
+    public class SideBarNavigator
     {
         private readonly SideMenuViewModel sideMenuViewModel;
-        MainViewContentViewModel contentViewModel;
+        private readonly MainViewNavigator mainViewNavigator;
 
-        public SideBarNavigator(SideMenuViewModel sideMenuViewModel, ILoggerFactory loggerFactory)
-            : base(loggerFactory.CreateLogger<SideBarNavigator>())
+        public SideBarNavigator(SideMenuViewModel sideMenuViewModel, MainViewNavigator mainViewNavigator)
         {
             this.sideMenuViewModel = sideMenuViewModel;
+            this.mainViewNavigator = mainViewNavigator;
         }
 
-        public MainViewContentViewModel MainWindowViewModel
+        public void NavigateToItem(string name, object parameter = null)
         {
-            get
-            {
-                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<MainViewContentViewModel>();
-            }
-        }
-
-        public override INavigationHostViewModel ViewModel => MainWindowViewModel;
-
-        public void NavigateToItem(string name, object parameter)
-        {
-            var sideItem = sideMenuViewModel.MenuItems.SingleOrDefault(x => x.Name == name);
+            var clickedItem = sideMenuViewModel.MenuItems.SingleOrDefault(x => x.Name == name);
             var selectedItem = sideMenuViewModel.MenuItems.SingleOrDefault(x => x.IsSelected);
 
-            if (sideItem != null)
+            if (clickedItem != null)
             {
-                if (selectedItem != null) 
+                if (selectedItem != null)
                 {
                     selectedItem.IsSelected = false;
                 }
 
+                clickedItem.IsSelected = true;
+
                 switch (name)
                 {
+                    case "files":
+                        mainViewNavigator.NavigateToView<DiskFilesViewModel>();
+                        break;
+
+                    case "myDisks":
+                        mainViewNavigator.NavigateToView<MyDisksViewModel>();
+                        break;
+
                     default:
                         break;
                 }

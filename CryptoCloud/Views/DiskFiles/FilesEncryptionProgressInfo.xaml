@@ -59,7 +59,7 @@
                         <StackPanel>
                             <Border x:Name="header"
                                     Height="60"
-                                    Padding="15,10,10,10"
+                                    Padding="15,10,15,10"
                                     Background="#222329"
                                     CornerRadius="20,20,0,0">
                                 <Grid>
@@ -85,8 +85,7 @@
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDoubleClick">
                                                 <i:InvokeCommandAction
-                                                    Command="{Binding ToggleCommand}"
-                                                    CommandParameter="{Binding SelectedPhone}" />
+                                                    Command="{Binding ToggleCollapsedCommand}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
                                     </Image>
@@ -105,11 +104,22 @@
                         </StackPanel>
 
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Minimised}" Value="True">
+                            <DataTrigger Binding="{Binding Collapsed}" Value="True">
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" To="2" Duration="0:0:0.5" />
+                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" To="2" Duration="0:0:0.5" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Collapsed}" Value="True">
                                 <Setter TargetName="header" Property="CornerRadius" Value="20" />
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding Minimised}" Value="False">
+                            <DataTrigger Binding="{Binding Collapsed}" Value="False">
                                 <Setter TargetName="header" Property="CornerRadius" Value="20,20,0,0" />
                             </DataTrigger>
                         </ControlTemplate.Triggers>

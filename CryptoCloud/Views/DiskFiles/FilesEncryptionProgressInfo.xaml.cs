@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoCloud.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,33 @@ namespace CryptoCloud.Views.DiskFiles
     /// </summary>
     public partial class FilesEncryptionProgressInfo : UserControl
     {
+        public bool Collapsed
+        {
+            get { return (bool)GetValue(CollapsedProperty); }
+            set { SetValue(CollapsedProperty, value); }
+        }
+
+        public static readonly DependencyProperty CollapsedProperty =
+                DependencyProperty.Register(
+                        "Collapsed",
+                        typeof(bool),
+                        typeof(FilesEncryptionProgressInfo),
+                        new FrameworkPropertyMetadata(
+                                false,
+                                FrameworkPropertyMetadataOptions.AffectsMeasure |
+                                FrameworkPropertyMetadataOptions.AffectsRender,
+                                new PropertyChangedCallback(OnCollapsedChanged)));
+
+        private static void OnCollapsedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((FilesEncryptionProgressInfo)d).Collapse();
+        }
+
+        private void Collapse()
+        {
+            //this.Template.FindName();
+        }
+
         public FilesEncryptionProgressInfo()
         {
             InitializeComponent();
