@@ -28,12 +28,16 @@
                 <Button Content="Все облака" 
                         Width="150" 
                         Height="50" 
+                        FontFamily="{StaticResource SfProTextRegular}"
+                        FontSize="{StaticResource FontSizeLargerRegular}"
                         Margin="0,0,10,0"
                         FontWeight="Medium"
                         Style="{StaticResource DropDownButton}" />
                 <Button Content="По названию" 
                         Width="150" 
                         Height="50" 
+                        FontFamily="{StaticResource SfProTextRegular}"
+                        FontSize="{StaticResource FontSizeLargerRegular}"
                         Margin="0,0,10,0"
                         FontWeight="Medium"
                         Style="{StaticResource DropDownButton}" />

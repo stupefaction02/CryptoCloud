@@ -20,6 +20,7 @@
                     Content="Создать"
                     Width="154" 
                     Height="50" 
+                    FontFamily="{StaticResource SfProTextRegular}"
                     Background="#2886F1"
                     Style="{StaticResource PlusIconButton}" />
             </Border>

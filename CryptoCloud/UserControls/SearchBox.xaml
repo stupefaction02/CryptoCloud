@@ -31,22 +31,23 @@
                              Source="pack://application:,,,/Images/SearchIcon.png"/>
                     </Border>
 
-                    <Grid Grid.Column="2" 
-                          Margin="0,4,0,0">
-                        <TextBlock x:Name="placeholder" 
-                                   LineHeight="24"
-                                   Foreground="#707383"
-                                   FontFamily="{TemplateBinding FontFamily}"
-                                   FontStretch="{TemplateBinding FontStretch}"
-                                   FontSize="{TemplateBinding FontSize}">
+                    <Border Grid.Column="2" Padding="0,6,0,6">
+                        <Grid Grid.Column="2">
+                            <TextBlock x:Name="placeholder" 
+                                           LineHeight="24"
+                                           Foreground="#707383"
+                                           FontFamily="{TemplateBinding FontFamily}"
+                                           FontStretch="{TemplateBinding FontStretch}"
+                                           FontSize="{TemplateBinding FontSize}">
                             Поиск
-                        </TextBlock>
-                        <ScrollViewer x:Name="PART_ContentHost" 
-                                  Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}, Path=ActualWidth}"
-                                  Focusable="false" 
-                                  HorizontalScrollBarVisibility="Hidden" 
-                                  VerticalScrollBarVisibility="Hidden"/>
-                    </Grid>
+                            </TextBlock>
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                          Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type TextBox}}, Path=ActualWidth}"
+                                          Focusable="false" 
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden"/>
+                        </Grid>
+                    </Border>
                 </Grid>
                 
             </Border>

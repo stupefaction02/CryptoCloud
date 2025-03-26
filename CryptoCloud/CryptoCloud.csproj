@@ -42,6 +42,7 @@
     <None Remove="Images\FolderFill.png" />
     <None Remove="Images\gear.png" />
     <None Remove="Images\google_icon.png" />
+    <None Remove="Images\icon.ico" />
     <None Remove="Images\Info.png" />
     <None Remove="Images\key-fill.png" />
     <None Remove="Images\LinkDiskButtonIcon.png" />
@@ -115,6 +116,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\google_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Info.png">
