@@ -23,11 +23,23 @@ namespace CryptoCloud.ViewModels
 
     public class FilesEncryptionProgressInfoViewModel : ViewModel
     {
+        private bool isPopupShown;
+
         public bool Collapsed { get; set; }
 
         public ICommand ToggleCollapsedCommand { get; set; }
 
         public ObservableCollection<FileEncryptionTaskModel> FileEncryptionTasks { get; set; }
+
+        public bool IsPopupShown
+        {
+            get => isPopupShown;
+            internal set
+            {
+                isPopupShown = value;
+                OnPropertyChanged(nameof(IsPopupShown));
+            }
+        }
 
         public FilesEncryptionProgressInfoViewModel()
         {

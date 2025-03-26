@@ -41,8 +41,22 @@ namespace CryptoCloud.AttachedProperties
             else
             {
                 bool loaded = uiElement.IsLoaded;
-                //UndoAction(uiElement);
+
+                if (loaded)
+                {
+                    UndoAction(uiElement);
+                }
             }
+        }
+
+        private static void UndoAction(FrameworkElement uiElement)
+        {
+            DoubleAnimation buttonAnimation = new DoubleAnimation();
+            buttonAnimation.From = 0;
+            buttonAnimation.To = -(uiElement.ActualHeight);
+            buttonAnimation.Duration = TimeSpan.FromSeconds(0.5);
+
+            uiElement.BeginAnimation(Canvas.TopProperty, buttonAnimation);
         }
 
         private static void DoAction(FrameworkElement uiElement)
@@ -55,7 +69,7 @@ namespace CryptoCloud.AttachedProperties
             DoubleAnimation buttonAnimation = new DoubleAnimation();
             buttonAnimation.From = -(uiElement.ActualHeight);
             buttonAnimation.To = 0;
-            buttonAnimation.Duration = TimeSpan.FromSeconds(1);
+            buttonAnimation.Duration = TimeSpan.FromSeconds(0.5);
 
             uiElement.BeginAnimation(Canvas.TopProperty, buttonAnimation);
         }

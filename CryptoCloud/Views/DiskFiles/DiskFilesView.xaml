@@ -152,7 +152,7 @@
                     Height="50" />
 
             <diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
-                                                        Visibility="Collapsed"
+                                                        Visibility="{Binding IsPopupShown, Converter={StaticResource VisibilityConverter}}"
                                                         Width="400" 
                                                         Height="240"
                                                         Canvas.Bottom="0"
