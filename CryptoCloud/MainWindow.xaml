@@ -124,7 +124,7 @@
                          Height="{Binding ElementName=window, Path=ActualHeight}"
                          HorizontalAlignment="Center" VerticalAlignment="Center"
                          DataContext="{Binding ContentViewModel.CurrentContent}" 
-                         Padding="16,16,16,0">
+                         Padding="16,16,16,16">
                 <UserControl.Style>
                     <Style TargetType="{x:Type UserControl}">
                         <Style.Triggers>
@@ -147,7 +147,7 @@
                             <DataTrigger Binding="{Binding NavigationId}" Value="MainViewModel">
                                 <Setter Property="Content">
                                     <Setter.Value>
-                                        <views:MainView />
+                                        <views:MainView Padding="0,0,0,0" />
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>

@@ -33,7 +33,7 @@
                                 <DataTrigger Binding="{Binding NavigationId}" Value="MyDisksViewModel">
                                     <Setter Property="Content">
                                         <Setter.Value>
-                                            <views:MyDisksView />
+                                            <views:MyDisksView DataContext="{Binding}" />
                                         </Setter.Value>
                                     </Setter>
                                 </DataTrigger>

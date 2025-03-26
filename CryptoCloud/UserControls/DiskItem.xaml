@@ -26,6 +26,7 @@
                     Canvas.Top="10"
                     FontWeight="Medium"
                     FontSize="{StaticResource FontSizeRegular}"
+                    FontFamily="{StaticResource SfProTextRegular}"
                     Width="95" 
                     Height="46" 
                     Background="#222329"
@@ -38,19 +39,22 @@
                        Foreground="#FFFFFF"
                        FontWeight="Bold" 
                        LineHeight="30"
+                       FontFamily="{StaticResource SfProTextRegular}"
                        Margin="0,0,0,10"
-                       FontSize="{StaticResource FontSizeLargerRegular}" />
+                       FontSize="{StaticResource FontSizeLarge}" />
                 <TextBlock Text="{Binding Owner, FallbackValue=DiskOwner}" 
                        Foreground="#FFFFFF"
                        FontWeight="Bold" 
                        LineHeight="30"
+                       FontFamily="{StaticResource SfProTextRegular}"
                        Margin="0,0,0,10"
-                       FontSize="{StaticResource FontSizeLargerRegular}" />
+                       FontSize="{StaticResource FontSizeLarge}" />
                 <TextBlock Text="{Binding Size, FallbackValue=300GB}" 
                        Foreground="#707383"
+                       FontFamily="{StaticResource SfProTextRegular}"
                        FontWeight="Bold" 
                        LineHeight="30"
-                       FontSize="{StaticResource FontSizeLargerRegular}" />
+                       FontSize="{StaticResource FontSizeLarge}" />
             </StackPanel>
         </Border>
     </Grid>
