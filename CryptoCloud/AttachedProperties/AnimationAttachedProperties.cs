@@ -40,20 +40,24 @@ namespace CryptoCloud.AttachedProperties
             }
             else
             {
-                //StopAction();
+                bool loaded = uiElement.IsLoaded;
+                //UndoAction(uiElement);
             }
         }
 
         private static void DoAction(FrameworkElement uiElement)
         {
+            if (uiElement.Visibility == Visibility.Collapsed)
+            {
+                uiElement.Visibility = Visibility.Visible;
+            }
+
             DoubleAnimation buttonAnimation = new DoubleAnimation();
             buttonAnimation.From = -(uiElement.ActualHeight);
             buttonAnimation.To = 0;
-            buttonAnimation.Duration = TimeSpan.FromSeconds(2);
+            buttonAnimation.Duration = TimeSpan.FromSeconds(1);
 
             uiElement.BeginAnimation(Canvas.TopProperty, buttonAnimation);
-
-
         }
     }
 }

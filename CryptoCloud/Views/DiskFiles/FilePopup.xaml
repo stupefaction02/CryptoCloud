@@ -48,9 +48,9 @@
                         Height="16"
                         Source="pack://application:,,,/Images/x.png">
                     <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction
-                            Command="{Binding DoubleCommand}"
+                            Command="{Binding CloseCommand}"
                             CommandParameter="{Binding SelectedPhone}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>

@@ -1,4 +1,5 @@
-﻿using CryptoCloud.ViewModels;
+﻿using CryptoCloud.Models;
+using CryptoCloud.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace CryptoCloud.Services
 {
     public interface IPopupService
     {
-        void ShowFileInfoPopup(DiskModel fileInfo);
+        void HideAllPopups();
+        void ShowFileInfoPopup(DiskFileItemModel fileInfo);
     }
 }

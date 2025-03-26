@@ -1,10 +1,6 @@
-﻿using CryptoCloud.Infrastructure;
+﻿using CryptoCloud.Models;
 using CryptoCloud.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CryptoCloud.ViewModels.MainWindowViewModels;
 
 namespace CryptoCloud.Services
 {
@@ -23,13 +19,28 @@ namespace CryptoCloud.Services
 
         // thus, we created another viewmodel that is subservient to mainWindowViewModel, let's call it PopupViewModel
 
-        public PopupService()
+        public PopupService(PopupsViewModel popupsViewModel)
         {
+            PopupsViewModel = popupsViewModel;
         }
 
-        public void ShowFileInfoPopup(DiskModel fileInfo)
+        public PopupsViewModel PopupsViewModel { get; }
+
+        public void HideAllPopups()
         {
-            
+            PopupsViewModel.ShowAnyPopup = false;
+            PopupsViewModel.FilePopupViewModel.ShowFileInfoPopup = false;
+        }
+
+        public void ShowFileInfoPopup(DiskFileItemModel fileInfo)
+        {
+            PopupsViewModel.ShowAnyPopup = true;
+
+            PopupsViewModel.FilePopupViewModel = new FilePopupViewModel(this)
+            {
+                ShowFileInfoPopup = true,
+                FileInfoDataContext = fileInfo
+            };
         }
     }
 }

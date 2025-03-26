@@ -152,33 +152,26 @@
                 </Style>
             </UserControl.Style>
         </UserControl>
-        
-        <Canvas>
-            
 
-            <Border x:Name="popups"
+        <Canvas x:Name="popups" DataContext="{Binding PopupsViewModel}">
+
+            <Border Panel.ZIndex="1"
+                    Visibility="{Binding ShowAnyPopup, Converter={StaticResource VisibilityConverter}}"
+                    Width="{Binding ElementName=window, Path=ActualWidth}" 
+                    Height="{Binding ElementName=window, Path=ActualHeight}"
+                    Background="Black" Opacity="0.75" />
+
+            <Border 
+                    Panel.ZIndex="2"
                     Height="80" 
                     Canvas.Top="-80" 
                     Canvas.Left="0"
-                ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ToggleFileInfoPopup}">
+                    DataContext="{Binding FilePopupViewModel}"
+                ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ShowFileInfoPopup}">
                 <diskFilesViews:FilePopup 
                           x:Name="fileInfoPopup" 
                           Height="80" 
-                          Visibility="Collapsed"
                           Width="{Binding ElementName=window, Path=ActualWidth}">
-                    <!--<i:Interaction.Triggers>
-                    <DataTrigger Binding="{Binding ToggleFileInfoPopup}" Value="True">
-                        <DataTrigger.EnterActions>
-                            <BeginStoryboard>
-                                <Storyboard Timeline.DesiredFrameRate="60">
-                                    <DoubleAnimation Storyboard.TargetName="ball" Storyboard.TargetProperty="(Canvas.Top)"
-                         From="-80" To="0" AutoReverse="True" Duration="0:0:2.5"
-                         DecelerationRatio="1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </DataTrigger.EnterActions>
-                    </DataTrigger>
-                </i:Interaction.Triggers>-->
                 </diskFilesViews:FilePopup>
             </Border>
         </Canvas>
