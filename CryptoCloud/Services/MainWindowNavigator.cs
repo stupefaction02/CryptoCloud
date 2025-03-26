@@ -1,6 +1,5 @@
 ﻿using CryptoCloud.Infrastructure;
 using CryptoCloud.ViewModels;
-using CryptoCloud.ViewModels.MainViewViewModels;
 using CryptoCloud.ViewModels.MainWindowViewModels;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,7 +14,7 @@ namespace CryptoCloud.Services
     /// <summary>
     /// View model which content may be changed.
     /// </summary>
-    public interface IHaveContentViewModel
+    public interface INavigationHostViewModel
     {
         public ViewModel CurrentContent { get; set; }
     }
@@ -28,11 +27,11 @@ namespace CryptoCloud.Services
             this.logger = logger;
         }
 
-        public virtual IHaveContentViewModel? ViewModel { get; }
+        public virtual INavigationHostViewModel? ViewModel { get; }
 
         public void NavigateToView<T>() where T : ViewModel
         {
-            var currentView = loadViewDataContext<T>();
+            var currentView = LoadViewDataContext<T>();
 
             if (currentView != null)
             {
@@ -43,7 +42,7 @@ namespace CryptoCloud.Services
         }
 
         private Dictionary<string, ViewModel> viewModels = new Dictionary<string, ViewModel>();
-        private T? loadViewDataContext<T>() where T : ViewModel
+        protected virtual T? LoadViewDataContext<T>() where T : ViewModel
         {
             // here we decide what view models we want to store and what we want to recreate every time navigation request was fired
 
@@ -82,26 +81,6 @@ namespace CryptoCloud.Services
             }
         }
 
-        public override IHaveContentViewModel ViewModel => MainWindowViewModel;
-    }
-
-    public class MainViewNavigator : Navigator
-    {
-        MainViewContentViewModel contentViewModel;
-
-        public MainViewNavigator(ILoggerFactory loggerFactory)
-            : base(loggerFactory.CreateLogger<MainViewNavigator>())
-        {
-        }
-
-        public MainViewContentViewModel MainWindowViewModel
-        {
-            get
-            {
-                return contentViewModel = contentViewModel ?? DependencyContainer.Resolve<MainViewContentViewModel>();
-            }
-        }
-
-        public override IHaveContentViewModel ViewModel => MainWindowViewModel;
+        public override INavigationHostViewModel ViewModel => MainWindowViewModel;
     }
 }

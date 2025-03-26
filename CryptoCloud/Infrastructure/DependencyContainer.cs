@@ -29,7 +29,7 @@ namespace CryptoCloud.Infrastructure
             services.AddSingleton<DiskFilesViewModel>();
             services.AddSingleton<FilesEncryptionProgressInfoViewModel>();
             services.AddSingleton<MainWindowNavigator>();
-            services.AddSingleton<MainViewNavigator>();
+            services.AddSingleton<SideBarNavigator>();
             services.AddSingleton<PopupsViewModel>();
 
             services.AddScoped<MainViewContentViewModel>();

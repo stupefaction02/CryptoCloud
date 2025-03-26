@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,8 @@ namespace CryptoCloud.ViewModels
 
     public class DiskItemModel
     {
+        public string Uid { get; set; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// item or addButton
         /// </summary>
@@ -28,6 +31,8 @@ namespace CryptoCloud.ViewModels
 
     public class MyDisksViewModel : ViewModel
     {
+        public ICommand DiskClickedCommand { get; set; }
+
         public ICommand AddDiskCommand { get; set; }
 
         public void AddDiskCommnadHandler(object obj)
@@ -36,9 +41,15 @@ namespace CryptoCloud.ViewModels
 
         public ObservableCollection<DiskItemModel> Disks { get; set; }
 
-        public MyDisksViewModel()
+        ILogger logger;
+
+        public MyDisksViewModel(ILoggerFactory loggerFactory)
         {
+            logger = loggerFactory.CreateLogger<MyDisksViewModel>();
+
             AddDiskCommand = new RelayCommand<object>(AddDiskCommnadHandler);
+
+            DiskClickedCommand = new RelayCommand<object>(DiskClickedCommandHandler);
 
             Disks = new ObservableCollection<DiskItemModel>
             {
@@ -48,6 +59,18 @@ namespace CryptoCloud.ViewModels
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "vasily.zadov1957@mail.ru", Size = "15 МБ", Type = "Disk" } },
                 new DiskItemModel { DiskModel = new DiskModel { Owner = "Anon", Size = "1512 ТБ", Type = "Disk" } },
             };
+        }
+
+        private void DiskClickedCommandHandler(object? obj)
+        {
+            if (obj is string uid)
+            {
+                var clickedDisk = Disks.SingleOrDefault(x => x.Uid == uid);
+
+                DiskModel model = clickedDisk.DiskModel;
+
+                logger.LogInformation($"Disk item click. DiskModel = {{ owner = {model.Owner} }}");
+            }
         }
     }
 }

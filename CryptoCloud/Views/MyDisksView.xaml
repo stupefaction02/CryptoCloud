@@ -42,77 +42,86 @@
                         Style="{StaticResource DropDownButton}" />
                 <Button Width="76" 
                         Height="50" 
-                        Style="{StaticResource DropDownzzWithIconButton}" />
+                        Style="{StaticResource DropDownWithIconButton}" />
             </StackPanel>
         </Grid>
 
-        <ItemsControl x:Name="disks" Height="1000" ItemsSource="{Binding Disks}">
-
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+        <ScrollViewer Height="Auto" VerticalScrollBarVisibility="Disabled">
             
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Padding="0" Margin="0,0,30,30" Width="250" Height="350">
-                        <Button.Style>
-                            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AssetsMainEntity.TransparentButton}">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate>
-                                            
-                                            <UserControl>
-                                                <UserControl.Style>
-                                                    <Style TargetType="{x:Type UserControl}">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Type}" Value="item">
-                                                                <Setter Property="Content">
-                                                                    <Setter.Value>
-                                                                        <controls:DiskItem Width="250" Height="350" DataContext="{Binding DiskModel}" />
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
+            <ItemsControl x:Name="disks" ItemsSource="{Binding Disks}">
 
-                                                            <DataTrigger Binding="{Binding Type}" Value="addButton">
-                                                                <Setter Property="Content">
-                                                                    <Setter.Value>
-                                                                        <Border Width="250" 
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Padding="0" 
+                                Tag="{Binding Uid}"
+                                Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DiskClickedCommand}"
+                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag}"
+                                Margin="0,0,30,30" 
+                                Width="250" 
+                                Height="350">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource AssetsMainEntity.TransparentButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+
+                                                <UserControl>
+                                                    <UserControl.Style>
+                                                        <Style TargetType="{x:Type UserControl}">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Type}" Value="item">
+                                                                    <Setter Property="Content">
+                                                                        <Setter.Value>
+                                                                            <controls:DiskItem Width="250" Height="350" DataContext="{Binding DiskModel}" />
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </DataTrigger>
+
+                                                                <DataTrigger Binding="{Binding Type}" Value="addButton">
+                                                                    <Setter Property="Content">
+                                                                        <Setter.Value>
+                                                                            <Border Width="250" 
                                                                                 Height="350"
                                                                                 CornerRadius="30"
                                                                                 Background="#222329">
-                                                                            <StackPanel VerticalAlignment="Center"
+                                                                                <StackPanel VerticalAlignment="Center"
                                                                                         HorizontalAlignment="Center" >
-                                                                                <Image 
+                                                                                    <Image 
                                                                                    VerticalAlignment="Center"
                                                                                    HorizontalAlignment="Center"
                                                                                     Width="100"
                                                                                     Height="100"
                                                                                     Margin="0,0,0,20"
                                                                                     Source="pack://application:,,,/Images/BigPlus.png"/>
-                                                                                <TextBlock Text="Добавить диск" 
+                                                                                    <TextBlock Text="Добавить диск" 
                                                                                    Foreground="#707383"
                                                                                    FontWeight="Bold" 
                                                                                    LineHeight="30"
                                                                                    FontSize="{StaticResource FontSizeLarge}" />
-                                                                            </StackPanel>
-                                                                        </Border>
-                                                                    </Setter.Value>
-                                                                </Setter>
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </UserControl.Style>
-                                            </UserControl>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                                                                </StackPanel>
+                                                                            </Border>
+                                                                        </Setter.Value>
+                                                                    </Setter>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </UserControl.Style>
+                                                </UserControl>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </StackPanel>
 </UserControl>

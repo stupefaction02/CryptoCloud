@@ -12,10 +12,11 @@
     <Border Background="#1B1C21"
             Padding="0,15,0,0"
             CornerRadius="35"
+            MinHeight="{Binding ElementName=content, Path=ActualHeight}"
             BorderThickness="1"
             BorderBrush="#222329">
-        <StackPanel>
-            <Border HorizontalAlignment="Left" Margin="0,0,0,28" Padding="15,0,0,0">
+        <DockPanel x:Name="content" LastChildFill="False">
+            <Border DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="0,0,0,28" Padding="15,0,0,0">
                 <Button 
                     Content="Создать"
                     Width="154" 
@@ -25,7 +26,7 @@
                     Style="{StaticResource PlusIconButton}" />
             </Border>
 
-            <ItemsControl x:Name="sideMenuItems"
+            <ItemsControl DockPanel.Dock="Top" VerticalAlignment="Top" x:Name="sideMenuItems"
                           Width="Auto"
                           ItemsSource="{Binding MenuItems}">
                 <ItemsControl.ItemTemplate>
@@ -79,6 +80,6 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </StackPanel>
+        </DockPanel>
     </Border>
 </UserControl>

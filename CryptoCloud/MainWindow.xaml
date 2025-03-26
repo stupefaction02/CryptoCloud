@@ -117,46 +117,47 @@
         </Style>
     </Window.Resources>
     <Grid>
+        <UserControl x:Name="viewSwitch" 
+             Background="#16171D"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+             DataContext="{Binding ContentViewModel.CurrentContent}" 
+             Padding="16,16,16,16">
+            <UserControl.Style>
+                <Style TargetType="{x:Type UserControl}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding NavigationId}" Value="LinkDiskViewModel">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:LinkDIskView />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding NavigationId}" Value="LoginViewModel">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:LoginView Width="780" Height="650" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding NavigationId}" Value="MainViewModel">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <views:MainView Padding="0,0,0,0" />
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UserControl.Style>
+        </UserControl>
+        
         <Canvas>
-            <UserControl x:Name="viewSwitch" 
-                         Background="#16171D"
-                         Width="{Binding ElementName=window, Path=ActualWidth}"
-                         Height="{Binding ElementName=window, Path=ActualHeight}"
-                         HorizontalAlignment="Center" VerticalAlignment="Center"
-                         DataContext="{Binding ContentViewModel.CurrentContent}" 
-                         Padding="16,16,16,16">
-                <UserControl.Style>
-                    <Style TargetType="{x:Type UserControl}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding NavigationId}" Value="LinkDiskViewModel">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <views:LinkDIskView />
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+            
 
-                            <DataTrigger Binding="{Binding NavigationId}" Value="LoginViewModel">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <views:LoginView Width="780" Height="650" />
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding NavigationId}" Value="MainViewModel">
-                                <Setter Property="Content">
-                                    <Setter.Value>
-                                        <views:MainView Padding="0,0,0,0" />
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </UserControl.Style>
-            </UserControl>
-
-            <Border Height="80" 
+            <Border x:Name="popups"
+                    Height="80" 
                     Canvas.Top="-80" 
                     Canvas.Left="0"
                 ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ToggleFileInfoPopup}">

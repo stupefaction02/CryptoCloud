@@ -42,6 +42,8 @@
                            VerticalAlignment="Center"
                            Foreground="#FFFFFF"
                            FontWeight="Bold" 
+                           Margin="0,4,0,0"
+                           FontFamily="{StaticResource SfProTextRegular}"
                            LineHeight="24"
                            FontSize="{StaticResource FontSizeLargerRegular}" />
             </StackPanel>
@@ -49,6 +51,7 @@
                        HorizontalAlignment="Center"
                        Foreground="#707383"
                        FontWeight="Bold" 
+                       FontFamily="{StaticResource SfProTextRegular}"
                        LineHeight="20"
                        FontSize="{StaticResource FontSizeRegular}" />
         </StackPanel>

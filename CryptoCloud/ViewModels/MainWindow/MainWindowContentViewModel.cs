@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CryptoCloud.ViewModels.MainWindowViewModels
 {
-    public class MainWindowContentViewModel : ViewModel, IHaveContentViewModel
+    public class MainWindowContentViewModel : ViewModel, INavigationHostViewModel
     {
         private ViewModel content;
 

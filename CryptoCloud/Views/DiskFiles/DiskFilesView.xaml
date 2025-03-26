@@ -51,19 +51,19 @@
                     Style="{StaticResource DropDownButton}" />
                     <Button Width="76" 
                     Height="50" 
-                    Style="{StaticResource DropDownzzWithIconButton}" />
+                    Style="{StaticResource DropDownWithIconButton}" />
                 </StackPanel>
             </Grid>
 
-            <Grid>
+            <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Vertical" Margin="0,0,0,30" HorizontalAlignment="Left">
                     <Button Content="Последние" 
                         Width="150" 
                         HorizontalAlignment="Left"
-                        Height="50" 
-                        Margin="0,0,0,10"
+                        Height="40" 
+                        Margin="0,0,0,30"
                         FontWeight="Medium"
-                        Style="{StaticResource DropDownButton}" />
+                        Style="{StaticResource GroupingButton}" />
                     <ItemsControl x:Name="recentFiles" 
                                   ItemsSource="{Binding RecentFiles}"
                               Background="Transparent">
@@ -81,16 +81,15 @@
                     </ItemsControl>
                 </StackPanel>
 
-                <StackPanel Visibility="Collapsed" Orientation="Vertical" HorizontalAlignment="Left">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                     <Button Content="Все файлы" 
                             Width="150" 
                             Height="50" 
                             HorizontalAlignment="Left"
                             Margin="0,0,0,10"
                             FontWeight="Medium"
-                            Style="{StaticResource DropDownButton}" />
+                            Style="{StaticResource GroupingButton}" />
                     <ItemsControl x:Name="allFiles" 
-                      Height="Auto" 
                       ItemsSource="{Binding AllFiles}"
                       Background="Transparent">
                         <ItemsControl.ItemsPanel>
@@ -98,9 +97,15 @@
                                 <WrapPanel />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:DiskFileItemModel}">
+                                <ContentControl Content="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </StackPanel>
-            </Grid>
+            </StackPanel>
         </StackPanel>
 
         <Canvas>

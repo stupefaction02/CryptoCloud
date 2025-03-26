@@ -111,14 +111,14 @@
                             Command="{Binding LoginButtonCommand}"
                             Style="{StaticResource BlueGradientButton}"/>
                     <Button Content="Войти с помощью Google" 
-                            Margin="0,0,0,10"
+                            Margin="0,0,0,30"
                             Height="50" 
                             Background="Transparent"
                             Style="{StaticResource LoginWithGoogleButton}"/>
 
                     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                         <Image 
-                            Width="20"
+                            Width="20" 
                             Height="20"
                             Margin="0,0,10,0"
                             Source="pack://application:,,,/Images/key-fill.png"/>
@@ -137,15 +137,22 @@
                 </StackPanel>
             </Border>
 
-            <Canvas x:Name="loginRightSide" Grid.Column="1" Width="Auto" Height="Auto">
-                <Canvas.Background>
-                    <ImageBrush Stretch="Fill" 
-                                ImageSource="pack://application:,,,/Images/loginBG.png">
+            <Grid Grid.Column="1">
 
-                    </ImageBrush>
-                </Canvas.Background>
+                <Border Name="mask" Background="White" CornerRadius="0,25,25,0"/>
 
-                <!-- JetBrains Mono -->
+                <StackPanel>
+
+                    <StackPanel.OpacityMask>
+                        <VisualBrush Visual="{Binding ElementName=mask}"/>
+                    </StackPanel.OpacityMask>
+
+                    <Image Source="pack://application:,,,/Images/loginBG.png"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Canvas x:Name="loginRightSide" Background="Transparent" Grid.Column="1" Width="Auto" Height="Auto">
                 <TextBlock 
                     FontFamily="{StaticResource JetbrainsMonoRegular}"
                     Canvas.Left="25"
@@ -165,8 +172,7 @@
                     Canvas.Right="23"
                     Width="50"
                     Height="53.03"
-                    Source="pack://application:,,,/Images/Login_Page_TopRight_Icon.png"
-                />
+                    Source="pack://application:,,,/Images/Login_Page_TopRight_Icon.png"/>
             </Canvas>
         </Grid>
     </Border>
