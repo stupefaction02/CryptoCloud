@@ -45,7 +45,9 @@ namespace CryptoCloud.Views.DiskFiles
 
         private void Collapse()
         {
-            //this.Template.FindName();
+            //var tasksContainer = this.Template.FindName("fileEncryptionTasks", this.TemplatedParent);
+
+
         }
 
         public FilesEncryptionProgressInfo()

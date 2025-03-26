@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CryptoCloud.Views.DiskFiles"
+             xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=FilesEncryptionProgressInfoViewModel}"
              mc:Ignorable="d" 
@@ -83,7 +84,7 @@
                                          Height="16"
                                          Source="pack://application:,,,/Images/ChevronDown.png">
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseDoubleClick">
+                                            <i:EventTrigger EventName="MouseDown">
                                                 <i:InvokeCommandAction
                                                     Command="{Binding ToggleCollapsedCommand}" />
                                             </i:EventTrigger>
@@ -94,6 +95,7 @@
                             </Border>
 
                             <Border x:Name="fileEncryptionTasks" 
+                                    ap:CollapsedAttachedProperties.StartCollapseAnimation="{Binding Collapsed}"
                                     Background="#1B1C21"
                                     BorderThickness="0,1,1,1"
                                     BorderBrush="#222329"
@@ -104,16 +106,15 @@
                         </StackPanel>
 
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Collapsed}" Value="True">
+                            <!--<DataTrigger Binding="{Binding Collapsed}" Value="True">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" To="2" Duration="0:0:0.5" />
-                                            <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" To="2" Duration="0:0:0.5" />
+                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Height}" To="0" Duration="0:0:0.5" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
-                            </DataTrigger>
+                            </DataTrigger>-->
 
                             <DataTrigger Binding="{Binding Collapsed}" Value="True">
                                 <Setter TargetName="header" Property="CornerRadius" Value="20" />
