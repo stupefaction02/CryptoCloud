@@ -79,10 +79,22 @@
                                                 FontSize="{StaticResource FontSizeRegular}"/>
 
                                     <Image 
-                                        Grid.Column="2"
+                                         Grid.Column="2"
                                          Width="16"
-                                         Height="16"
-                                         Source="pack://application:,,,/Images/ChevronDown.png">
+                                         Height="16">
+
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Setter Property="Source" Value="pack://application:,,,/Images/ChevronDown.png" />
+
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Collapsed}" Value="true">
+                                                        <Setter Property="Source" Value="pack://application:,,,/Images/DropDownButtonIcon.png" />
+                                                    </DataTrigger>    
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                        
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="MouseDown">
                                                 <i:InvokeCommandAction
@@ -95,7 +107,6 @@
                             </Border>
 
                             <Border x:Name="fileEncryptionTasks" 
-                                    ap:CollapsedAttachedProperties.StartCollapseAnimation="{Binding Collapsed}"
                                     Background="#1B1C21"
                                     BorderThickness="0,1,1,1"
                                     BorderBrush="#222329"
@@ -106,15 +117,28 @@
                         </StackPanel>
 
                         <ControlTemplate.Triggers>
-                            <!--<DataTrigger Binding="{Binding Collapsed}" Value="True">
+                            <DataTrigger Binding="{Binding Collapsed}" Value="True">
                                 <DataTrigger.EnterActions>
                                     <BeginStoryboard>
                                         <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Height" From="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Height}" To="0" Duration="0:0:0.5" />
+                                            <DoubleAnimation 
+                                                Storyboard.TargetName="fileEncryptionTasks"
+                                                Storyboard.TargetProperty="(Border.Height)" 
+                                                From="120" To="0" Duration="0:0:1" AutoReverse="False"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
-                            </DataTrigger>-->
+                                <DataTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation 
+                                                Storyboard.TargetName="fileEncryptionTasks"
+                                                Storyboard.TargetProperty="(Border.Height)" 
+                                                From="0" To="120" Duration="0:0:1" AutoReverse="False"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.ExitActions>
+                            </DataTrigger>
 
                             <DataTrigger Binding="{Binding Collapsed}" Value="True">
                                 <Setter TargetName="header" Property="CornerRadius" Value="20" />
