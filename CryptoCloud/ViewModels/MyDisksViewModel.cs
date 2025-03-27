@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CryptoCloud.Models;
 using CryptoCloud.Services;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,25 +12,6 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class DiskModel
-    {
-        public string Type { get; set; }
-        public string Owner { get; set; }
-        public string Size { get; set; }
-    }
-
-    public class DiskItemModel
-    {
-        public string Uid { get; set; } = Guid.NewGuid().ToString();
-
-        /// <summary>
-        /// item or addButton
-        /// </summary>
-        public string Type { get; set; } = "item";
-
-        public DiskModel DiskModel { get; set; }
-    }
-
     public class MyDisksViewModel : ViewModel
     {
         public ICommand DiskClickedCommand { get; set; }

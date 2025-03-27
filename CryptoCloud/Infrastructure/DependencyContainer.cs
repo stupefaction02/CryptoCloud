@@ -18,11 +18,9 @@ namespace CryptoCloud.Infrastructure
         {
             services.ConfigureLoggerFactory();
 
-            services.AddSingleton<ApplicationInfoManager>();
             services.AddSingleton<MainWindowViewModel>();
             services.AddSingleton<LoginViewModel>();
             services.AddSingleton<LinkDiskViewModel>();
-            services.AddSingleton<LinkDiskHeaderViewModel>();
             services.AddSingleton<SideMenuViewModel>();
             services.AddSingleton<MyDisksViewModel>();
             services.AddSingleton<MainViewModel>();

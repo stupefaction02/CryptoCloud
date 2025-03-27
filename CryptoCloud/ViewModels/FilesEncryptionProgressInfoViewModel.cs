@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CryptoCloud.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,18 +10,6 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class FileEncryptionTaskModel
-    {
-        public string Name { get; set; }
-
-        public string SizeInfo { get; set; }
-
-        /// <summary>
-        /// 1-100
-        /// </summary>
-        public int ProgressValue { get; set; }
-    }
-
     public class FilesEncryptionProgressInfoViewModel : ViewModel
     {
         public double EncryptionProgress { get; set; }

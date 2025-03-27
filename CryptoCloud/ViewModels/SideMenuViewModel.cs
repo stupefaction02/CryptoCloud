@@ -1,5 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
+using CryptoCloud.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,31 +11,6 @@ using System.Windows.Input;
 
 namespace CryptoCloud.ViewModels
 {
-    public class SideMenuItemModel : ObservableObject
-    {
-        private bool isSelected;
-
-        public string Name { get; set; }
-
-        public string Uid { get; set; } = Guid.NewGuid().ToString();
-
-        public string ImageSource { get; set; }
-
-        public string Text { get; set; }
-
-        public bool IsSelected
-        {
-            get
-            {
-                return isSelected;
-            }
-            set
-            {
-                isSelected = value;
-                OnPropertyChanged(nameof(IsSelected));
-            }
-        }
-    }
 
     public class SideMenuViewModel : ViewModel
     {
