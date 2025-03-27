@@ -23,6 +23,9 @@ namespace CryptoCloud.ViewModels
 
     public class FilesEncryptionProgressInfoViewModel : ViewModel
     {
+        public double EncryptionProgress { get; set; }
+        public string EncyptionProgressText { get; set; }
+
         private bool isPopupShown;
 
         public bool Collapsed { get; set; }
@@ -51,13 +54,21 @@ namespace CryptoCloud.ViewModels
                 new FileEncryptionTaskModel { Name = "File2.png", SizeInfo = "1 б", ProgressValue = 100 },
                 new FileEncryptionTaskModel { Name = "File3.png", SizeInfo = "10 гб", ProgressValue = 0 },
             };
+
+            EncryptionProgress = 20;
+            EncyptionProgressText = $"Шифруем данные {EncryptionProgress}";
         }
 
         private void ToggleCommandHandler()
         {
             Collapsed = !Collapsed;
 
+            EncryptionProgress = Collapsed ? 80 : 20;
+            EncyptionProgressText = $"Шифруем данные {EncryptionProgress}%";
+
             OnPropertyChanged(nameof(Collapsed));
+            OnPropertyChanged(nameof(EncryptionProgress));
+            OnPropertyChanged(nameof(EncyptionProgressText));
         }
     }
 }

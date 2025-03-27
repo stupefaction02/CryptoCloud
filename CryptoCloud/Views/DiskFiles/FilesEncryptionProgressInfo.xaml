@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:CryptoCloud.Converters" 
              xmlns:local="clr-namespace:CryptoCloud.Views.DiskFiles"
              xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -11,6 +12,8 @@
              d:DesignHeight="240" d:DesignWidth="400">
 
     <UserControl.Resources>
+        <converters:ProgressMirroringConverter x:Key="ProgressMirroringConverter" />
+
         <DataTemplate x:Key="FileEncryptionInfoItemTemplate">
             <Border Padding="10" Width="400" Height="60">
                 <Grid>
@@ -57,64 +60,101 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <StackPanel>
-                            <Border x:Name="header"
-                                    Height="60"
-                                    Padding="15,10,15,10"
-                                    Background="#222329"
-                                    CornerRadius="20,20,0,0">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" MinWidth="10" />
-                                        <ColumnDefinition Width="16" />
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Text="{Binding EncyptionProgress, FallbackValue=Шифруем данные 21%}"
-                                               Grid.Column="0"
-                                                Foreground="White"
-                                                FontWeight="DemiBold"
-                                                LineHeight="20"
-                                                VerticalAlignment="Center"
-                                                FontSize="{StaticResource FontSizeRegular}"/>
-
-                                    <Image 
-                                         Grid.Column="2"
-                                         Width="16"
-                                         Height="16">
-
-                                        <Image.Style>
-                                            <Style TargetType="{x:Type Image}">
-                                                <Setter Property="Source" Value="pack://application:,,,/Images/ChevronDown.png" />
-
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Collapsed}" Value="true">
-                                                        <Setter Property="Source" Value="pack://application:,,,/Images/DropDownButtonIcon.png" />
-                                                    </DataTrigger>    
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Image.Style>
-                                        
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="MouseDown">
-                                                <i:InvokeCommandAction
-                                                    Command="{Binding ToggleCollapsedCommand}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </Image>
-
-                                </Grid>
-                            </Border>
-
+                        <Grid VerticalAlignment="Top">
                             <Border x:Name="fileEncryptionTasks" 
-                                    Background="#1B1C21"
-                                    BorderThickness="0,1,1,1"
-                                    BorderBrush="#222329"
-                                    CornerRadius="0,0,20,20">
-                                <ItemsControl ItemsSource="{Binding FileEncryptionTasks}" ItemTemplate="{Binding Source={StaticResource FileEncryptionInfoItemTemplate}}">
+                                Background="#1B1C21"
+                                Margin="0,40,0,0"
+                                BorderThickness="0,1,1,1"
+                                BorderBrush="#222329"
+                                    Padding="0,20,0,10"
+                                CornerRadius="0,0,20,20">
+                                    <ItemsControl ItemsSource="{Binding FileEncryptionTasks}" ItemTemplate="{Binding Source={StaticResource FileEncryptionInfoItemTemplate}}">
                                 </ItemsControl>
                             </Border>
-                        </StackPanel>
+                            <Grid x:Name="grid" VerticalAlignment="Top">
+                                <Grid>
+                                    <Border Name="mask" BorderThickness="0" BorderBrush="#222329" Background="#222329" CornerRadius="20,20,0,0"/>
+
+                                    <Grid>
+                                        <Grid.OpacityMask>
+                                            <VisualBrush Visual="{Binding ElementName=mask}"/>
+                                        </Grid.OpacityMask>
+
+                                        <StackPanel Width="{Binding ElementName=header, Path=ActualWidth}"  Background="#222329" x:Name="progressBarBg" Height="60" >
+                                            <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource SfProTextRegular}" Text="1234567812345678123456781234567812345678123456781234567812345678" Foreground="#33343A" />
+                                            <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource SfProTextRegular}" Text="1234567812345678123456781234567812345678123456781234567812345678" Foreground="#33343A" />
+                                            <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource SfProTextRegular}" Text="1234567812345678123456781234567812345678123456781234567812345678" Foreground="#33343A" />
+                                            <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource SfProTextRegular}" Text="1234567812345678123456781234567812345678123456781234567812345678" Foreground="#33343A" />
+                                            <TextBlock FontSize="{StaticResource FontSizeRegular}" FontFamily="{StaticResource SfProTextRegular}" Text="1234567812345678123456781234567812345678123456781234567812345678" Foreground="#33343A" />
+                                        </StackPanel>
+
+                                        <ProgressBar Height="60" Width="{Binding ElementName=header, Path=ActualWidth}" 
+                                                     HorizontalAlignment="Left" Foreground="#222329" 
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     FlowDirection="RightToLeft"
+                                                     Maximum="100">
+
+                                            <ProgressBar.Value>
+                                                <MultiBinding Converter="{StaticResource ProgressMirroringConverter}">
+                                                    <Binding Path="DataContext.EncryptionProgress" RelativeSource="{RelativeSource Mode=Self}"/>
+                                                    <Binding Path="Maximum" RelativeSource="{RelativeSource Mode=Self}"/>
+                                                </MultiBinding>
+                                            </ProgressBar.Value>
+                                            
+                                        </ProgressBar>
+                                    </Grid>
+                                </Grid>
+                                <Border x:Name="header"
+                                        Height="60"
+                                        Padding="15,10,15,10">
+                                    <Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" MinWidth="10" />
+                                                <ColumnDefinition Width="16" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{Binding EncyptionProgressText, FallbackValue=Шифруем данные 21%}"
+                                                   Grid.Column="0"
+                                                    Foreground="White"
+                                                    FontWeight="DemiBold"
+                                                    LineHeight="20"
+                                                    VerticalAlignment="Center"
+                                                    FontSize="{StaticResource FontSizeRegular}"/>
+
+                                            <Image 
+                                             Grid.Column="2"
+                                             Width="16"
+                                             Height="16">
+
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="pack://application:,,,/Images/ChevronDown.png" />
+
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Collapsed}" Value="true">
+                                                                <Setter Property="Source" Value="pack://application:,,,/Images/DropDownButtonIcon.png" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction
+                                                        Command="{Binding ToggleCollapsedCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Image>
+
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            
+                        </Grid>
 
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding Collapsed}" Value="True">
@@ -124,7 +164,7 @@
                                             <DoubleAnimation 
                                                 Storyboard.TargetName="fileEncryptionTasks"
                                                 Storyboard.TargetProperty="(Border.Height)" 
-                                                From="120" To="0" Duration="0:0:1" AutoReverse="False"/>
+                                                From="210" To="0" Duration="0:0:0.5" AutoReverse="False"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.EnterActions>
@@ -134,18 +174,18 @@
                                             <DoubleAnimation 
                                                 Storyboard.TargetName="fileEncryptionTasks"
                                                 Storyboard.TargetProperty="(Border.Height)" 
-                                                From="0" To="120" Duration="0:0:1" AutoReverse="False"/>
+                                                From="0" To="210" Duration="0:0:0.5" AutoReverse="False"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </DataTrigger.ExitActions>
                             </DataTrigger>
 
                             <DataTrigger Binding="{Binding Collapsed}" Value="True">
-                                <Setter TargetName="header" Property="CornerRadius" Value="20" />
+                                <Setter TargetName="mask" Property="CornerRadius" Value="20" />
                             </DataTrigger>
 
                             <DataTrigger Binding="{Binding Collapsed}" Value="False">
-                                <Setter TargetName="header" Property="CornerRadius" Value="20,20,0,0" />
+                                <Setter TargetName="mask" Property="CornerRadius" Value="20,20,0,0" />
                             </DataTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

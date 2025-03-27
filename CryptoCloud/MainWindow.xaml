@@ -10,6 +10,7 @@
         xmlns:converters="clr-namespace:CryptoCloud.Converters" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
+      
         mc:Ignorable="d"
         x:Name="window"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
@@ -18,103 +19,6 @@
 
         <converters:VisibilityConverter x:Key="VisibilityConverter" />
 
-        <Style x:Key="123" TargetType="{x:Type local:MainWindow}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type local:MainWindow}">
-                        <Border Padding="{Binding OuterMarginSize}">
-                            <Grid>
-                                <Border x:Name="infoBar"
-                                    Panel.ZIndex="5"
-                                    Margin="0 410 0 0"
-                                        VerticalAlignment="Center"
-                                        Visibility="{Binding InfoBar}">
-                                    <TextBlock TextAlignment="Center"
-                                           VerticalAlignment="Center"
-                                               Foreground="White" 
-                                               FontSize="{StaticResource FontSizeRegular}"
-                                               Text="{Binding InfoMessage.Text}"/>
-                                    <Border.Background>
-                                        <SolidColorBrush Color="{Binding InfoMessage.ColorCodeHex}"/>
-                                    </Border.Background>
-
-                                    <Border.Style>
-                                        <Style>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RunInfoBarAnimation}" Value="True">
-                                                    <DataTrigger.EnterActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation
-                                                                To="20" From="0"
-                                                                Storyboard.TargetProperty="Height"
-                                                                AutoReverse="False"
-                                                                Duration="0:0:1.45"
-                                                            />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </DataTrigger.EnterActions>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding HideInfoBar}" Value="True">
-                                                    <DataTrigger.EnterActions>
-                                                        <BeginStoryboard>
-                                                            <Storyboard>
-                                                                <DoubleAnimation
-                                                                To="0" From="20"
-                                                                Storyboard.TargetProperty="Height"
-                                                                AutoReverse="False"
-                                                                Duration="0:0:1.45"
-                                                            />
-                                                            </Storyboard>
-                                                        </BeginStoryboard>
-                                                    </DataTrigger.EnterActions>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                </Border>
-
-                                <Border BorderThickness="1"
-                                    BorderBrush="#4D004D"
-                                    Panel.ZIndex="2" />
-
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="{Binding TitleHeightLength}"/>
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <!-- Header Bar -->
-                                    <DockPanel LastChildFill="False" Background="#000000" Grid.Row="0">
-                                        <Button DockPanel.Dock="Left" Style="{StaticResource SystemIcon}" 
-                                                Command="{Binding MenuCommand}">
-                                        </Button>
-
-                                        <Button Width="30" Height="30" BorderThickness="0" DockPanel.Dock="Left">
-                                            <Button.Background>
-                                                <ImageBrush ImageSource="pack://application:,,,/Images/icon.ico"/>
-                                            </Button.Background>
-                                        </Button>
-
-                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                            <Button Width="40" Command="{Binding Minimize}" Content="_" Style="{StaticResource WindowControlButton}"/>
-                                            <Button Width="40" Command="{Binding Close}" Content="X" Style="{StaticResource WindowCloseButton}"/>
-                                        </StackPanel>
-                                    </DockPanel>
-
-                                    <!-- Page Content -->
-                                    <Border Grid.Row="1" Background="#333333">
-                                        <ContentPresenter Content="{TemplateBinding Content}"/>
-                                    </Border>
-
-
-                                </Grid>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Window.Resources>
     <Grid>
         <UserControl x:Name="viewSwitch" 
@@ -155,12 +59,12 @@
 
         <Canvas x:Name="popups" DataContext="{Binding PopupsViewModel}">
 
-            <diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
+            <!--<diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
                                             Visibility="Visible"
                                             Width="400" 
                                             Height="240"
                                             Canvas.Bottom="0"
-                                            Canvas.Right="16"/>
+                                            Canvas.Right="16"/>-->
             
             <Border Panel.ZIndex="1"
                     Visibility="{Binding ShowAnyPopup, Converter={StaticResource VisibilityConverter}}"
