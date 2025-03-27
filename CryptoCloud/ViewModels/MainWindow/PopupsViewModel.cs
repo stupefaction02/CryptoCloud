@@ -1,6 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using CryptoCloud.Models;
-using CryptoCloud.Services;
 using CryptoCloud.ViewModels.MainWindowViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,55 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace CryptoCloud.ViewModels.MainWindowViewModels
-{
-    public class FilePopupViewModel : ViewModel
-    {
-        public ICommand CloseCommand { get; set; }
-        private DiskFileItemModel fileInfoDataContext;
-        private bool showFileInfoPopup;
-        private readonly IPopupService popupService;
-
-        public bool ShowFileInfoPopup
-        {
-            get => showFileInfoPopup;
-            set
-            {
-                showFileInfoPopup = value;
-
-                OnPropertyChanged(nameof(ShowFileInfoPopup));
-            }
-        }
-
-        public DiskFileItemModel FileInfoDataContext
-        {
-            get => fileInfoDataContext;
-            set
-            {
-                fileInfoDataContext = value;
-                OnPropertyChanged(nameof(FileInfoDataContext));
-            }
-        }
-
-        public FilePopupViewModel(IPopupService popupService)
-        {
-            CloseCommand = new RelayCommand(CloseCommandHandler);
-            this.popupService = popupService;
-        }
-
-        private void CloseCommandHandler()
-        {
-            this.popupService.HideAllPopups();
-        }
-    }
-}
 
 namespace CryptoCloud.ViewModels
 {
     public class PopupsViewModel : ViewModel
     {
+        public ICommand PopupsRootClickCommand { get; set; }
+
         public bool showAnyPopup { get; set; }
 
+        /// <summary>
+        /// Attach veil to the screen to block all other clicks instead of click on popups
+        /// </summary>
         public bool ShowAnyPopup
         {
             get => showAnyPopup;
@@ -65,6 +26,21 @@ namespace CryptoCloud.ViewModels
             {
                 showAnyPopup = value;
                 OnPropertyChanged(nameof(ShowAnyPopup));
+            }
+        }
+
+        private bool makeScreenDark { get; set; }
+
+        /// <summary>
+        /// Make the veil dark
+        /// </summary>
+        public bool MakeScreenDark
+        {
+            get => makeScreenDark;
+            set
+            {
+                makeScreenDark = value;
+                OnPropertyChanged(nameof(MakeScreenDark));
             }
         }
 
@@ -77,6 +53,38 @@ namespace CryptoCloud.ViewModels
             {
                 flePopupViewModel = value;
                 OnPropertyChanged(nameof(FilePopupViewModel));
+            }
+        }
+
+        private FilesEncryptionProgressInfoViewModel filesEncryptionProgressInfoViewModel { get; set; }
+
+        public FilesEncryptionProgressInfoViewModel FilesEncryptionProgressInfoViewModel
+        {
+            get => filesEncryptionProgressInfoViewModel;
+            set
+            {
+                filesEncryptionProgressInfoViewModel = value;
+                OnPropertyChanged(nameof(FilesEncryptionProgressInfoViewModel));
+            }
+        }
+
+        public PopupsViewModel()
+        {
+            PopupsRootClickCommand = new RelayCommand(() => HideAll());
+        }
+
+        private void HideAll()
+        {
+            ShowAnyPopup = false;
+
+            if (flePopupViewModel != null)
+            {
+                flePopupViewModel.ShowFileInfoPopup = false;
+            }
+
+            if (filesEncryptionProgressInfoViewModel != null)
+            {
+                filesEncryptionProgressInfoViewModel.IsPopupShown = false;
             }
         }
     }

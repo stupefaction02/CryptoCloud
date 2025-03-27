@@ -39,20 +39,20 @@ namespace CryptoCloud.ViewModels
             AllFiles = new ObservableCollection<DiskFileItemModel>
             {
                 new DiskFolderModel { Name = "Папка 1", ModificationDate = "24.03.2025 9:32" },
-                new DiskFolderModel { Name = "Папка 123", ModificationDate = "14.02.2015 13:32" },
-                new DiskFolderModel { Name = "Папка - copy (123)", ModificationDate = "8.03.2023 11:32" },
-                new DiskFileModel { Name = "x-file (1).png", ModificationDate = "89.01.2123 29:32" },
+                new DiskFolderModel { Name = "Папка 1", ModificationDate = "14.02.2015 13:32" },
+                new DiskFolderModel { Name = "Папка", ModificationDate = "8.03.2023 11:32" },
+                new DiskFileModel { Name = "xfile.png", ModificationDate = "89.01.2123 29:32" },
             };
 
             RecentFiles = new ObservableCollection<DiskFileItemModel>
             {
                 new DiskFolderModel { Name = "Папка 1", ModificationDate = "24.03.2025 9:32" },
-                new DiskFolderModel { Name = "Папка 123", ModificationDate = "14.02.2015 13:32" },
-                new DiskFolderModel { Name = "Папка - copy (123)", ModificationDate = "8.03.2023 11:32" },
+                new DiskFolderModel { Name = "Папка2", ModificationDate = "14.02.2015 13:32" },
+                new DiskFolderModel { Name = "Папка", ModificationDate = "8.03.2023 11:32" },
                 new DiskFileModel { Name = "file.png", ModificationDate = "8.03.2023 11:32" },
-                new DiskFileModel { Name = "x-file.png", ModificationDate = "8.03.2023 11:32" },
-                new DiskFileModel { Name = "ABOBA.png", ModificationDate = "28.13.2023 11:32" },
-                new DiskFileModel { Name = "x-file (1).png", ModificationDate = "89.01.2123 29:32" },
+                new DiskFileModel { Name = "x-fil.png", ModificationDate = "8.03.2023 11:32" },
+                new DiskFileModel { Name = "ABOBA", ModificationDate = "28.13.2023 11:32" },
+                new DiskFileModel { Name = "x-fil.png", ModificationDate = "89.01.2123 29:32" },
             };
 
             DownloadFilesCommand = new RelayCommand(DownloadFilesCommandHandler);
@@ -75,7 +75,9 @@ namespace CryptoCloud.ViewModels
         {
             var vm = encryptionProgressInfoViewModel ?? (encryptionProgressInfoViewModel = DependencyContainer.Resolve<FilesEncryptionProgressInfoViewModel>());
 
-            vm.IsPopupShown = true;
+            //vm.IsPopupShown = true;
+
+            popupService.ShowEncryptionProgressInfoPopup(vm);
 
             logger.LogInformation($"DownloadFilesButton was clicked.");
         }

@@ -36,7 +36,7 @@ namespace CryptoCloud.AttachedProperties
             var begin = (bool)e.NewValue;
             if (begin)
             {
-                DoAction(uiElement);
+                DoSlideFromScreenTopAnimation(uiElement);
             }
             else
             {
@@ -44,12 +44,12 @@ namespace CryptoCloud.AttachedProperties
 
                 if (loaded)
                 {
-                    UndoAction(uiElement);
+                    UndoSlideFromScreenTopAnimation(uiElement);
                 }
             }
         }
 
-        private static void UndoAction(FrameworkElement uiElement)
+        private static void UndoSlideFromScreenTopAnimation(FrameworkElement uiElement)
         {
             DoubleAnimation buttonAnimation = new DoubleAnimation();
             buttonAnimation.From = 0;
@@ -59,7 +59,7 @@ namespace CryptoCloud.AttachedProperties
             uiElement.BeginAnimation(Canvas.TopProperty, buttonAnimation);
         }
 
-        private static void DoAction(FrameworkElement uiElement)
+        private static void DoSlideFromScreenTopAnimation(FrameworkElement uiElement)
         {
             if (uiElement.Visibility == Visibility.Collapsed || uiElement.Visibility == Visibility.Hidden)
             {
@@ -72,6 +72,70 @@ namespace CryptoCloud.AttachedProperties
             buttonAnimation.Duration = TimeSpan.FromSeconds(0.5);
 
             uiElement.BeginAnimation(Canvas.TopProperty, buttonAnimation);
+        }
+
+
+        public static bool GetStartSlideFromScreenBottomAnimation(DependencyObject obj)
+        {
+            return (bool)obj.GetValue(StartSlideFromScreenBottomAnimationProperty);
+        }
+
+        public static void SetStartSlideFromScreenBottomAnimation(DependencyObject obj, bool value)
+        {
+            obj.SetValue(StartSlideFromScreenBottomAnimationProperty, value);
+        }
+
+        public static readonly DependencyProperty StartSlideFromScreenBottomAnimationProperty
+            = DependencyProperty.RegisterAttached("StartSlideFromScreenBottomAnimation",
+                typeof(bool),
+                typeof(AnimationAttachedProperties),
+                new UIPropertyMetadata(false, StartSlideFromScreenBottomAnimationChangedCallback));
+
+        private static void StartSlideFromScreenBottomAnimationChangedCallback(DependencyObject s, DependencyPropertyChangedEventArgs e)
+        {
+            var uiElement = s as FrameworkElement;
+            if (uiElement == null)
+                throw new InvalidOperationException("This attached property only supports Storyboards.");
+
+            var begin = (bool)e.NewValue;
+            if (begin)
+            {
+                DoSlideFromScreenBottomAnimation(uiElement);
+            }
+            else
+            {
+                bool loaded = uiElement.IsLoaded;
+
+                if (loaded)
+                {
+                    UndoSlideFromScreenBottomAnimation(uiElement);
+                }
+            }
+        }
+
+        private static void DoSlideFromScreenBottomAnimation(FrameworkElement uiElement)
+        {
+            DoubleAnimation buttonAnimation = new DoubleAnimation();
+            buttonAnimation.From = -(uiElement.ActualHeight);
+            buttonAnimation.To = 0 + 20;
+            buttonAnimation.Duration = TimeSpan.FromSeconds(0.5);
+
+            uiElement.BeginAnimation(Canvas.BottomProperty, buttonAnimation);
+        }
+
+        private static void UndoSlideFromScreenBottomAnimation(FrameworkElement uiElement)
+        {
+            if (uiElement.Visibility == Visibility.Collapsed || uiElement.Visibility == Visibility.Hidden)
+            {
+                uiElement.Visibility = Visibility.Visible;
+            }
+
+            DoubleAnimation buttonAnimation = new DoubleAnimation();
+            buttonAnimation.From = 0;
+            buttonAnimation.To = -(uiElement.ActualHeight + 20);
+            buttonAnimation.Duration = TimeSpan.FromSeconds(0.5);
+
+            uiElement.BeginAnimation(Canvas.BottomProperty, buttonAnimation);
         }
     }
 }

@@ -10,7 +10,6 @@
         xmlns:converters="clr-namespace:CryptoCloud.Converters" 
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
-      
         mc:Ignorable="d"
         x:Name="window"
         DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MainWindowViewModel}"
@@ -59,33 +58,56 @@
 
         <Canvas x:Name="popups" DataContext="{Binding PopupsViewModel}">
 
-            <!--<diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
-                                            Visibility="Visible"
-                                            Width="400" 
-                                            Height="240"
-                                            Canvas.Bottom="0"
-                                            Canvas.Right="16"/>-->
-            
-            <Border Panel.ZIndex="1"
+            <Border x:Name="popupsRoot" 
+                    Panel.ZIndex="1"
                     Visibility="{Binding ShowAnyPopup, Converter={StaticResource VisibilityConverter}}"
                     Width="{Binding ElementName=window, Path=ActualWidth}" 
                     Height="{Binding ElementName=window, Path=ActualHeight}"
-                    Background="Black" Opacity="0.75" />
+                    Opacity="0.75">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown">
+                        <i:InvokeCommandAction
+                            Command="{Binding PopupsRootClickCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding MakeScreenDark}" Value="True">
+                                <Setter Property="Background" Value="Black" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding MakeScreenDark}" Value="False">
+                                <Setter Property="Background" Value="Transparent" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
 
             <Border 
                     Panel.ZIndex="2"
                     Height="80" 
                     Canvas.Top="-80" 
-                Visibility="{Binding ShowFileInfoPopup, Converter={StaticResource VisibilityConverter}}"
                     Canvas.Left="0"
                     DataContext="{Binding FilePopupViewModel}"
-                ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ShowFileInfoPopup}">
+                    ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ShowFileInfoPopup}">
                 <diskFilesViews:FilePopup 
                           x:Name="fileInfoPopup" 
                           Height="80" 
                           Width="{Binding ElementName=viewSwitch, Path=ActualWidth}">
                 </diskFilesViews:FilePopup>
             </Border>
+
+            <diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
+                                                        DataContext="{Binding FilesEncryptionProgressInfoViewModel}"
+                                                        ap:AnimationAttachedProperties.StartSlideFromScreenBottomAnimation="{Binding Path=IsPopupShown}"
+                                                        Canvas.Bottom="-300" 
+                                                        Panel.ZIndex="2"
+                                                        Width="400" 
+                                                        Height="240"
+                                                        Canvas.Right="16"/>
         </Canvas>
     </Grid>
 </Window>

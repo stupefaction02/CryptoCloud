@@ -7,6 +7,7 @@
              xmlns:models="clr-namespace:CryptoCloud.Models"
              xmlns:diskFilesViews="clr-namespace:CryptoCloud.Views.DiskFiles"
              xmlns:controls="clr-namespace:CryptoCloud.UserControls"
+             xmlns:ap="clr-namespace:CryptoCloud.AttachedProperties"
              xmlns:converters="clr-namespace:CryptoCloud.Converters"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
@@ -150,13 +151,6 @@
                     Canvas.Right="40"
                     Width="209" 
                     Height="50" />
-
-            <diskFilesViews:FilesEncryptionProgressInfo x:Name="filesEncryptionProgressInfo"
-                                                        Visibility="{Binding IsPopupShown, Converter={StaticResource VisibilityConverter}}"
-                                                        Width="400" 
-                                                        Height="240"
-                                                        Canvas.Bottom="0"
-                                                        Canvas.Right="16"/>
         </Canvas>
     </Grid>
 </UserControl>

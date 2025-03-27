@@ -11,6 +11,7 @@ namespace CryptoCloud.Services
     public interface IPopupService
     {
         void HideAllPopups();
-        void ShowFileInfoPopup(DiskFileItemModel fileInfo);
+        void ShowEncryptionProgressInfoPopup(FilesEncryptionProgressInfoViewModel popupDataContext);
+        void ShowFileInfoPopup(DiskFileItemModel popupDataContext);
     }
 }

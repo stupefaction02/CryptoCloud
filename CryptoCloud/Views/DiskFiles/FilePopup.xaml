@@ -26,7 +26,7 @@
                         Width="97" 
                         Height="40" 
                         Margin="0,0,20,0"/>
-                <TextBlock Text="{Binding SelectedFile.Title, FallbackValue=FileName}"
+                <TextBlock Text="{Binding FileInfoDataContext.Name, FallbackValue=FileName}"
                            FontSize="{StaticResource FontSizeXXLarge}"
                            Foreground="White"
                            FontWeight="Bold"
@@ -50,8 +50,7 @@
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDown">
                             <i:InvokeCommandAction
-                            Command="{Binding CloseCommand}"
-                            CommandParameter="{Binding SelectedPhone}" />
+                            Command="{Binding CloseCommand}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Image>

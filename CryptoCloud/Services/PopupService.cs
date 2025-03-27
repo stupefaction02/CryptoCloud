@@ -1,4 +1,5 @@
-﻿using CryptoCloud.Models;
+﻿using CryptoCloud.Infrastructure;
+using CryptoCloud.Models;
 using CryptoCloud.ViewModels;
 using CryptoCloud.ViewModels.MainWindowViewModels;
 
@@ -35,12 +36,23 @@ namespace CryptoCloud.Services
         public void ShowFileInfoPopup(DiskFileItemModel fileInfo)
         {
             PopupsViewModel.ShowAnyPopup = true;
+            PopupsViewModel.MakeScreenDark = true;
 
             PopupsViewModel.FilePopupViewModel = new FilePopupViewModel(this)
             {
                 ShowFileInfoPopup = true,
                 FileInfoDataContext = fileInfo
             };
+        }
+
+        public void ShowEncryptionProgressInfoPopup(FilesEncryptionProgressInfoViewModel dataContext)
+        {
+            PopupsViewModel.ShowAnyPopup = true;
+            PopupsViewModel.MakeScreenDark = false;
+
+            dataContext.IsPopupShown = true;
+
+            PopupsViewModel.FilesEncryptionProgressInfoViewModel = dataContext;
         }
     }
 }

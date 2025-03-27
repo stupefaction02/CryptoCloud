@@ -41,6 +41,7 @@
                 <TextBlock Text="{Binding Name, FallbackValue=Папка 1}" 
                            VerticalAlignment="Center"
                            Foreground="#FFFFFF"
+                           TextWrapping="WrapWithOverflow"
                            FontWeight="Bold" 
                            LineHeight="24"
                            FontSize="{StaticResource FontSizeLargerRegular}" />

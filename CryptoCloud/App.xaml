@@ -17,6 +17,7 @@
 
             <infrastructure:ViewModelLocator x:Key="viewModelLocator"/>
             <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+            <converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

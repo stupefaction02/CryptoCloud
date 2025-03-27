@@ -12,28 +12,14 @@ using System.Windows.Data;
 
 namespace CryptoCloud.Converters
 {
-    public class ProgressMirroringConverter : IMultiValueConverter
+    public class BooleanToHiddenConverter : IValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.Length > 1)
-            {
-                if (values[0] is DependencyObject)
-                {
-                    return 1;
-                }
-
-                double maximum = (double)values[0];
-                double valueDouble = (double)values[1];
-
-                var t = Math.Abs( (maximum - valueDouble) );
-                return t;
-            }
-
-            return "";
+            return (bool)value ? Visibility.Visible : Visibility.Hidden;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

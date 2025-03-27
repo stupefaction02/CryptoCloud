@@ -98,6 +98,7 @@ namespace CryptoCloud.ViewModels.MainWindowViewModels
         }
 
         private bool hideInfoBar;
+        private readonly IPopupService popupService;
 
         public bool HideInfoBar
         {
@@ -112,7 +113,7 @@ namespace CryptoCloud.ViewModels.MainWindowViewModels
         public PopupsViewModel PopupsViewModel { get; set; }
         public MainWindowContentViewModel ContentViewModel { get; set; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IPopupService popupService)
         {
             mainWindow = Application.Current.MainWindow as MainWindow;
 
