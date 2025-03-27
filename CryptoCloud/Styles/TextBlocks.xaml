@@ -29,4 +29,5 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="LineHeight" Value="20" />
     </Style>
+    
 </ResourceDictionary>

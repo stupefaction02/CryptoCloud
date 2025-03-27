@@ -76,6 +76,7 @@
                     Panel.ZIndex="2"
                     Height="80" 
                     Canvas.Top="-80" 
+                Visibility="{Binding ShowFileInfoPopup, Converter={StaticResource VisibilityConverter}}"
                     Canvas.Left="0"
                     DataContext="{Binding FilePopupViewModel}"
                 ap:AnimationAttachedProperties.StartSlideFromScreenTopAnimation="{Binding Path=ShowFileInfoPopup}">

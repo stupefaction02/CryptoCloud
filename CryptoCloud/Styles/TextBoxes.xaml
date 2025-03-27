@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:attachedProperties="clr-namespace:CryptoCloud.AttachedProperties" >
+    
+    
     <Style x:Key="DefaultTextBox" TargetType="{x:Type TextBox}">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>

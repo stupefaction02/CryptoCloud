@@ -49,7 +49,11 @@
                                  BorderThickness="0"
                                  Foreground="#4091EE" 
                                  Width="150" 
-                                 Height="6" />
+                                 Height="6">
+                        <ProgressBar.Clip>
+                            <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,150,6"/>
+                        </ProgressBar.Clip>
+                    </ProgressBar>
                 </Grid>
             </Border>
         </DataTemplate>
